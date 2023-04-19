@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 저희는 학원을 운영하는 운영자입니다. 저희 학원 원생관리 프로그램을 만들어주세요.
+        // 학원생은 이름, 학년, 학교명이 필요하고 국어,영어,수학 성적이 필요합니다.
+        // 국영수 성적의 평균과 총점을 구할 수 있고, 학생수는 5명입니다.
+        // 국영수 성적은 1,2,3 학년만 관리합니다. 학기는 무시합니다.
+        // 다 3학년이라 치고 만들기
+
+        // 관리프로그램 최상위 함수 만들기
+        // 평균 구하는 함수, 총점 구하는 함수
+        // 학원생 이름, 학년, 학교명 넣는 object, > 그 안에 국영수 성적 넣기
+    
+        (function(){
+            // 객체의 단점 : attrubute만 만들어 쓰기는 좋은데
+            // method를 집어넣는 순간 건들기 어려워짐 (특히 성격이 비슷한 object면)
+
+            // grade : 학년
+            // 리턴값 : 학년의 국영수 총점
+            // method 생성
+            const getTotal = function(grade)
+            {
+                // 학년 성적 배열을 가지고 온다
+                let sc = this.score[grade-1];
+                
+                // 국영수 성적 더한다
+                let total = sc[0] + sc[1] + sc[2];
+
+                return total
+
+            }
+
+            const getAverage = function(grade)
+            {
+                // 학년 성적 배열을 가지고 온다
+                let sc = this.score[grade-1];
+
+                // 국영수 성적 더한다
+                let average = (sc[0] + sc[1] + sc[2]) / 3;
+
+                return average
+                
+            }
+
+            const stu1 = {
+                name : "정성훈",
+                grade : 3,
+                school : "이젠중학교",
+                score : [[80,75,93],[78,100,98],[76,98,69]],
+                getTotal : getTotal, // method를 넣어준 것
+                getAverage : getAverage
+
+            };
+            const stu2 = {
+                name : "박수현",
+                grade : 2,
+                school : "이젠중학교",
+                score : [[88,79,95],[73,100,98],[96,88,89]],
+                getTotal : getTotal,
+                getAverage : getAverage
+                
+            };
+
+            console.log(stu2.getTotal(1));
+            console.log(stu2.getTotal(2));
+            console.log(stu2.getTotal(3));
+        })();
+
+    </script>
+</body>
+</html>
