@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* h1 다음의 h2 하나를 선택(동위) */
+        h1 + h2 {
+            color: bisques;
+        }
+
+        /* h1 다음에 오는 모든 h2를 선택(동위) */
+        h1 ~ h2 {
+            color: blueviolet;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Header-1</h1>
+    <h2>Header-2</h2>
+    <h2>Header-2</h2>
+    <h2>Header-2</h2>
+    <h2>Header-2</h2>
+</body>
+</html>

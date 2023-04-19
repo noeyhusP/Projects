@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* enabled라는 상태를 구분하여 선택자를 인식 */
+        /* enabled은 선택, 클릭, 입력, 포커스를 받을 수 있는 상태 */
+        input:enabled {
+            background-color: aquamarine;
+        }
+        input:disabled {
+            background-color: rgb(190, 221, 140);
+        }
+        /* 포커스(ready상태에서 활성화상태가 되었을 때)가 되었을 때 작동 */
+        input:focus {
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <br><br>
+    <input type="text" disabled="disabled">
+</body>
+</html>

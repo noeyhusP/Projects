@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* (2n)이면 짝수번째만 선택 / (2n+1) 하면 홀수번째만 선택 */
+        li:nth-child(2n+1) {
+            color: red;
+        }
+        li:nth-child(2n) {
+            color: rgb(54, 30, 149);
+        }
+        /* 내가 고른 li 중 가장 첫 번째만 선택 */
+        /* first-child가 우선순위가 낮?음높음? (팩트체크하기) 가급적 마지막에 쓰기 */
+        li:first-child {
+            color: brown;
+            font-weight: bold;
+        }
+        li:last-child {
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>444</li>
+        <li>555</li>
+        <li>666</li>
+        <li>777</li>
+        <li>888</li>
+        <li>999</li>
+    </ul>
+    
+</body>
+</html>

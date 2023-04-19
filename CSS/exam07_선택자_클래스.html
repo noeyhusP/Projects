@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* class와 id가 스타일 설정이 다를시 우선순위에 의해 id가 우선으로 적용됨 */
+        #main_title{
+            color: blueviolet;
+        }
+        /* class는 .클래스이름 으로 style설정  */
+        .title {
+            color: rgb(0, 102, 255);
+        }
+    </style>
+</head>
+<body>
+    <!-- id는 중복하면 안 되지만 class는 중복 가능 / id중복이어도 css에서 구별하여 오류로 나타나지 않으니 조심 -->
+    <h1 id="main_title" class="title">추노</h1>
+    <h1 id="sub_title" class="title">노예란 무엇인가?</h1>
+</body>
+</html>
