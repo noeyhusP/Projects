@@ -2,7 +2,7 @@ html {
     font-size: 14px;
     font-family: 'Stylish', sans-serif;
 }
-.section0 video {
+.video section video {
     left: 0;
     top: 0;
     z-index: -30;
@@ -56,7 +56,7 @@ footer {
     align-items: center;
     justify-content: right;
 
-    max-width: 1300px;
+    max-width: 1500px;
     height: 100%;
     margin: 0 auto;
 }
@@ -64,4 +64,41 @@ footer {
 .global-nav-link {
     margin-left: 2em;
 }
+
+/* 아래부터 blur처리 영역 그대로 긁어와서 global로 수정함 */
+
+#show-section0 .sticky-element {
+    display: block;
+    /* sticky-element는 원래 안 보이지만 
+    #show-section0에 있는 sticky-element는 보이게 함 */
+
+}
+
+.global-nav-sticky > .global-nav {
+    position : fixed;
+    /* normal-flow 안 지키게 되니까 위치값 넣어줌 */
+    left : 0;
+    top : 0;
+    /* top값 지정 안 해주면 global-nav의 height에서 붙음 */
+
+    /* global-nav에서 width, height가 cascading되어 값이 내려오기 때문에
+    굳이 안 정해줌 */
+    border-bottom: 1px solid gray;
+
+    -webkit-backdrop-filter: saturate(180%) blur(15px);
+	-moz-backdrop-filter: saturate(180%) blur(15px);
+	-o-backdrop-filter: saturate(180%) blur(15px);
+	backdrop-filter: saturate(180%) blur(15px);
+    /* apple사이트에서 따온 blur처리 코드 */
+
+}
+
+/* global-nav-sticky의 반경에 들어왔을 때 global-nav-links의 border-bottom 없애줌 */
+/* 겹치지 않게! */
+.global-nav-sticky .global-nav-links {
+    border-bottom: none;
+}
+
+
+
 
