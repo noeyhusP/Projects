@@ -16,15 +16,13 @@
     </style>
 </head>
 <body>
-    <body id="show-section0">
-    <video class="video" src="./video/video1.mp4" autoplay loop muted></video>
-    <nav class="global-nav">
-        <div class="global-nav-links">
-
+    <section id="section-0" class="viedo-section"></section>
+    <video class="video" src="./video/video1.mp4" width="1920px" height="1080px" autoplay loop muted></video>
     <!-- title  -->
     <h1 class="title">Vegetarian</h1>
 
     <!-- link menu -->
+    
 
     <nav class="global-nav">
         <div class="global-nav-links">
@@ -32,6 +30,54 @@
             <a href="#" class="global-nav-link">food</a>
         </div>
     </nav>
+    </section>
+
+    <!-- 이미지 스크롤링 섹션 -->
+    <section id="section-1" class="scroll-section">
+
+        <div class="section0-product-name">
+            <p class="product-name">Vegetarianism</p>
+        </div>
+
+        <!-- 캔버스 추가하기 -->
+        <div class="sticky-element section0-canvas">
+            <canvas id="main-canvas" width="1920" height="1080"></canvas>
+        </div>
+
+        <div class="sticky-element section0-message a">
+            <p>온전히 빠져들게 하는 빛깔</p>
+        </div>
+
+        <div class="sticky-element section0-message b">
+            <p>나의 건강을 채워주는 향기</p>
+        </div>
+
+        <div class="sticky-element section0-message c"> 
+            <p>깨끗한 자연의 신선함</p>
+        </div>
+
+        <div class="sticky-element section0-message d"> 
+            <p>새롭게 입가를 찾아온 매혹</p>
+        </div>
+
+    </section>
+
+    <!-- 레시피 스크롤링 섹션  -->
+    <section id="section-1" class="scroll-section">
+        <div class="section1-recipe">
+            <p>
+                <strong>RECIPE</strong>
+            </p>
+        </div>
+        
+    </section>
+
+    <footer>
+        <div>
+            <p>Copyright 2023 SH Allright reserved.</p>
+        </div>
+    </footer>
+
 
 
     <script src="./main_1.js"></script>

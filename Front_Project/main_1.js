@@ -15,7 +15,7 @@
             value --;
             // value값을 감소하게 하면 값이 줄어들기 때문에 역주행
 
-            if (value < -500) // 100%란 자기크기의 100%
+            if (value < -450) // 100%란 자기크기의 100%
             {
                 $h1.style.transform = `translateY(${value}%)`
                 // value가 -500이 됐을 때까지 작아지다가
