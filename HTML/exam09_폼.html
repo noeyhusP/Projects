@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 서버가 클라이언트에게 보내주는 문서 -->
+    <form action="">
+        <fieldset>
+            <legend>로그인 정보</legend>
+            <label for="userid">
+            id : </label> <input id="userid" type="text">
+            <!-- label에 userid, input id에 userid 를 똑같이 설정해주었을 때
+             id 글자를 클릭하면 input창에 포커스가 감 (두 개가 하나로 묶였기 때문) -->
+            <br><br>
+            <!-- input 태그는 사용자로부터 입력을 받을 수 있는 속성 -->
+            <label for="userpw">pw :</label> <input id="userpw" type="password">
+        </fieldset>
+        <br>
+        <input type="submit" value="로그인">
+    </form>
+
+    <br>
+    <hr>
+    <br>
+
+    <form action="">
+        <fieldset>
+            <label for="id">text</label>
+            <br>
+            <input id="id" type="text" placeholder="5자 이하">
+            <br>
+            <br>
+            <label for="pw">password</label>
+            <br>
+            <input id="pw" type="password" placeholder="4자 이상">
+        </fieldset>
+            <br>
+            <input id="checkbox" type="checkbox" checked>
+            <label for="checkbox">부가세 포함</label>
+            <br>
+            <br>
+            <input id="choice1" type="radio" name="choice" value="사과" checked>
+            <label for="choice1">사과</label>
+            <input id="choice2" type="radio" name="choice" value="포도">
+            <label for="choice2">포도</label>
+            <input id="choice3" type="radio" name="choice" value="오렌지">
+            <label for="choice3">오렌지</label>
+            <br>
+            <br>
+            <input type="submit" value="제출">
+    </form>
+    
+</body>
+</html>
