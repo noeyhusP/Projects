@@ -2,19 +2,31 @@ html {
     font-size: 14px;
     font-family: 'Stylish', sans-serif;
 }
-.video section video {
+
+body {
+    overflow-x: hidden; /* 수평스크롤 없애기 */
+    letter-spacing: -0.05rem; /*0.05rem만큼(5%만큼) 글자폭 줄이기 */
+    /* 1rem = 제일 상위 폰트의 1개  */
+
+}
+
+#section-0 video {
     left: 0;
     top: 0;
     z-index: -30;
+
+    border: 1px solid blue;
 }
+
 
 .title {
     font-size: 9.5rem;
     font-weight: bold;
+    color: rgb(40, 14, 14);
     position: flex;
     justify-content: center;
     text-align: center;
-    margin-left: 1.9em;
+    margin-left: 1.8em;
     left: 0;
     top: 500px;
     opacity: 0;
@@ -65,12 +77,28 @@ footer {
     margin-left: 2em;
 }
 
+
+.Vegan-level {
+    font-size: 7rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.level {
+    font-size: 3rem;
+}
+
 /* 아래부터 blur처리 영역 그대로 긁어와서 global로 수정함 */
 
 #show-section0 .sticky-element {
     display: block;
     /* sticky-element는 원래 안 보이지만 
     #show-section0에 있는 sticky-element는 보이게 함 */
+
+}
+
+.section1-recipe > p {
+    font-size : 2.75rem;
 
 }
 
