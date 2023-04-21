@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        (function(){
+            // 루프카운트가 예상이 되는 경우
+            // 즉, 몇 바퀴를 돌지 아는 경우
+
+            // 1. 공식화해서 사용한다
+            for (let i = 0; i < 10; i++)
+            {
+                // 루프변수를 이용하지 않아야 한다.
+                // 루프변수는 배열 순회 (0~n)의 경우만 쓰도록 할 것
+
+
+            }
+
+            // 줄어드는 숫자가 필요하다고 i-- 로 역으로 바퀴를 돌게 하는 것 보단
+            // 변수를 따로 설정해서 돌리는 것이 바람직
+            // let countdown = 10;
+            // for (let i = 0; i < 10; i++)
+            // {
+            //     console.log(countdown);
+            //     countdown--;
+            // }
+
+            // 이중for문
+            // ex) 1년간 세끼 밥 먹는 것을 for문으로 나타내면
+            // for (i = 0; i <= 365; i++)
+            // {
+            //     for (j = 0; j < 3; j++)
+            //     {
+            //         console.log("밥먹기");
+            //     }
+            // } 
+
+            // 특수 for문
+            // 루프변수를 2개 이상 동시 선언
+            // 이렇게도 가능하지만 좋은 코드는 아님
+            // for (let k = 0, m = 9; k < 10; k++, m--)
+            // {
+            //     console.log(k,m);
+            // }
+
+            // 무한루프 for문 (웬만하면 쓰지 말 것)
+            // 초기값, 증감값 아무것도 없이 조건식만 남았기 때문에
+            // true(false가 아닌 상태)로 인식하고 조건식 성립시켜서 
+            // 무한루프를 돎
+            // for (;;) // (;true;)
+            // {
+            //     console.log(1);
+            // }
+            // // 밑과 같음
+            // while (true)
+            // {
+            //     console.log(1);
+            // }
+
+            // 순회 : 대상의 속성(Attribute)을 처음부터 끝까지 key로 접근하는 방법
+            // Attrubute는 대부분 key & Value 로 이루어져 있음
+            
+            let arr = [1, 2, 3, 4, 5];
+            // 배열도 key & Value 가 존재
+            // 배열의 Key는 Index
+
+            // 순회를 전문적으로 하는 for문
+            // for-in, for-of => Enhanced for문
+
+            for (let i = 0; i < arr.length; i++)
+            {
+                console.log(arr[i]);
+            }
+
+            console.log ( "--------------")
+
+            // 위 코드는 아래과 같음
+
+            // for-of (value를 찍음)
+
+            for (const value of arr)
+            {
+                console.log(value);
+            }
+            console.log ( "--------------")
+
+            // for-in (key를 찍음)
+
+            for (const key in arr)
+            {
+                console.log(key);
+            }
+
+            console.log ( "--------------")
+
+            // 객체(key & value) 순회
+            // 일반 for문으로 순회할 순 없음 (key가 정수가 아니기 때문)
+
+            let mouse = {
+                name : 'mouse',
+                button : 3,
+                color : 'black',
+                wireless : false
+            }
+
+            // 객체를 for-in으로 돌리면 객체의 key를 key로 인식하는 걸 볼 수 있음
+            for (const key in mouse)
+            {
+                console.log(key);
+            }
+
+            console.log ( "--------------")
+
+            // 그래서 객체 이름[key]를 for-in으로 불러오면 배열마냥 그 value을 불러옴
+            for (const key in mouse)
+            {
+                console.log(mouse[key]);
+            }
+
+            console.log ( "--------------")
+            // while문은 조건이 참일 때 돎
+            // ()안의 내용을 condition 또는 boolean expression이라고 함
+            // 루프카운트가 결정되지 않은 경우 사용
+            let x = 0;
+
+            while(true)
+            {
+                if (x >= 10)
+                {
+                    break;
+
+                }
+                console.log(x);
+                x++;
+
+            }
+
+            // 위 코드는 아래와 같음
+
+            while(x < 10)
+            {
+                console.log(x);
+                x++;
+            }
+
+            // do-while
+            // while은 조건을 보고 수행
+            // do-while은 실행을 하고 조건을 봄
+
+            x = 10;
+            do {
+                console.log(x);
+                // x를 일단 찍고
+
+            }while(x < 0); // 조건을 확인함
+            // 즉, 조건을 만족하지 않음에도 console.log실행이 됨
+
+            // do-while은 사용자에게 묻고 그 값에 따라 결과를 출력해야 할 때 주로 씀
+
+            
+
+        })();
+    </script>
+</body>
+</html>
