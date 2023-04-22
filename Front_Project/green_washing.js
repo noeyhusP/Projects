@@ -326,8 +326,6 @@
         // local-nav-sticky 일정 높이 이상 적용
         setLocalnavMenu();
 
-        playAnimation();
-
     })
 
     // 윈도우 사이즈가 변경될 때 마다 이벤트 발생
