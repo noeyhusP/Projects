@@ -19,7 +19,7 @@
             hMultiple : 5,
             objs : {
                 container : document.querySelector("#section-0"),
-                // picA : document.querySelector(".section0-canvas"),
+                // picA : document.querySelector(".scroll-section"),
                 canvas : document.querySelector("#main-canvas"),
                 ctx : document.querySelector("#main-canvas").getContext("2d"),
             },
@@ -261,7 +261,7 @@
         switch(currentSection)
         {
             case 0:
-                // objects.picA.style.opacity = 0;
+                // objects.container.style.opacity = 0;
                 imgVal = calcValue(values.imageIndex);
                 getImgValue = Math.floor(imgVal);
                 objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
@@ -269,12 +269,16 @@
                 // if (scrollRate < 0.12) // picA의 애니메이션 범위 1
                 // {
                 //     opacity = calcValue(sectionSet[currentSection].vals.picA_fade_in);
-                //     objects.canvas.style.opacity = opacity;
+                //     objects.container.style.opacity = opacity;
                 // }
                 // else if ((scrollRate >= 0.81) && (scrollRate < 0.92))
                 // {
                 //     opacity = calcValue(values.picA_fade_out);
-                //     objects.canvas.style.opacity = opacity;
+                //     objects.container.style.opacity = opacity;
+                // }
+                // else
+                // {
+                //     objects.container.style.opacity = 1;
                 // }
                 break;
         }
@@ -313,11 +317,11 @@
         // 현재 섹션값 가져오기
         currentSection = getCurrentSection();
 
-        // CSS 변경 적용
-        setBodyID(currentSection);
-
         // 캔버스 가져옴
         setCanvas();
+
+        // CSS 변경 적용
+        setBodyID(currentSection);
 
         // local-nav-sticky 일정 높이 이상 적용
         setLocalnavMenu();
