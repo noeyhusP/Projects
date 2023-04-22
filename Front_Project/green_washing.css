@@ -1,6 +1,4 @@
-/* body {
-    height: 3000;
-} */
+
 
 html {
     font-size: 14px;
@@ -115,7 +113,6 @@ footer {
 
 .local-nav-title-link {
     font-size: 1.5rem;
-    /* em이나 rem이나 똑같이 나옴 */
     font-weight: bold ;
     margin-right: auto;
 
@@ -143,6 +140,20 @@ footer {
     border: 1px solid green;
 
 }
+
+.sticky-element {
+    display: none;
+    position: fixed;
+}
+
+.section0-canvas {
+    left : 0;
+    top: 0;
+
+    z-index: -50;
+    /* 사과화면 맨 뒤로 밀기 */
+}
+
 
 #show-section0 .sticky-element {
     display: block;

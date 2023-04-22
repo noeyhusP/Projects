@@ -16,9 +16,17 @@
         {
             // section-0 정보
             height : 0,
-            hMultiple : 1,
+            hMultiple : 5,
             objs : {
                 container : document.querySelector("#section-0"),
+                canvas : document.querySelector("#main-canvas"),
+                ctx : document.querySelector("#main-canvas").getContext("2d"),
+            },
+            vals : {
+                imageCount : 229,
+                canvasImages : [],
+                imageIndex : [0, 228],
+
             }
         },
         {
@@ -39,24 +47,24 @@
 
             }
         },
-        // {
-        //     // section-3 정보 (instance2)
-        //     height : 0,
-        //     hMultiple : 1,
-        //     objs : {
-        //         container : document.querySelector("#section-3"),
+        {
+            // section-3 정보 (instance2)
+            height : 0,
+            hMultiple : 1,
+            objs : {
+                container : document.querySelector("#section-3"),
 
-        //     }
-        // },
-        // {
-        //     // section-4 정보 (instance3)
-        //     height : 0,
-        //     hMultiple : 1,
-        //     objs : {
-        //         container : document.querySelector("#section-4"),
+            }
+        },
+        {
+            // section-4 정보 (instance3)
+            height : 0,
+            hMultiple : 1,
+            objs : {
+                container : document.querySelector("#section-4"),
 
-        //     }
-        // }
+            }
+        }
 
     ]
 
@@ -87,6 +95,7 @@
 
     const getCurrentSection = function()
     {
+        let section = 0;
         let segment = 
         [
             sectionSet[0].height,
@@ -114,10 +123,10 @@
         {
             section = 3;
         }
-        // else if ((yOffset > segment[3]) && (yOffset <= segment[4]))
-        // {
-        //     section = 4;
-        // }
+        else if ((yOffset > segment[3]) && (yOffset <= segment[4]))
+        {
+            section = 4;
+        }
         else
         {
             console.error("[ERROR]getCurrentSection()");
@@ -156,30 +165,107 @@
         return prevHeight;
     }
 
+    // 캔버스에 이미지 불러오는 함수 선언
+    const setCanvas = function()
+    {
+        let imgElement;
+        const imgCount = sectionSet[0].vals.imageCount;
+        const canvasImages = sectionSet[0].vals.canvasImages;
+        const ctx = sectionSet[0].objs.ctx;
+
+        for (let i = 0; i < imgCount; i++)
+        {
+            imgElement = new Image();
+            imgElement.src = `./image_1/smokestack_${i}.png`;
+            canvasImages.push(imgElement);
+
+        }
+        imgElement.addEventListener("load",()=>
+        {
+            ctx.drawImage(canvasImages[0], 0, 0);
+
+        });
+    }
+
+    // opacity ratio 구하는 함수
+    const calcValue = function(values)
+    {
+        let result = 0; // return할 값 초기화
+        let ratio = 0;
+
+        // 현재섹션의 높이 구하기
+        const cur_height = sectionSet[currentSection].height;
+
+        let partStart = 0;
+        let partEnd = 0;
+        let partHeight = 0;
+
+        // value.length에 따라 다르게 if else로 작동하게 하기
+        if (values.length === 2)
+        {
+            // 1. 비율을 구한다
+            ratio = (sectionYoffset / cur_height);
+
+            // 2. 비율에 따른 CSS값을 구한다
+            result = ((values[1] - values[0]) * ratio) + values[0];
+            
+        }
+        else if (values.length === 3)
+        {
+            // 애니메이션이 시작되는 지점
+            partStart  = values[2].start * cur_height;
+            // 애니메이션이 끝나는 지점
+            partEnd    = values[2].end * cur_height;
+            // 애니메이션이 구동되는 범위(길이)
+            partHeight = partEnd - partStart;
+
+            if (sectionYoffset < partStart)
+            {
+                result = values[0];
+            }
+            else if (sectionYoffset > partEnd)
+            {
+                result = values[1];
+            }
+            else 
+            {
+                ratio = (sectionYoffset - partStart) / partHeight;
+                result = ((values[1] - values[0]) * ratio) + values[0];
+                
+            }
+            
+        }
+        else
+        {
+            console.error("[ERROR] calcValue(), invalid parameter")
+        }
+
+        return result;
+        // 모든 경우의 result를 반환 할 수 있도록 여기에 return
+    }
+
+    // 애니메이션 가동 함수 선언
+    const playAnimation = function()
+    {
+        let imgVal = 0;
+        let scrollRate = sectionYoffset / sectionSet[currentSection].height;
+
+        let values = sectionSet[currentSection].vals;
+        let objects = sectionSet[currentSection].objs;
+
+        switch(currentSection)
+        {
+            case 0:
+                imgVal = calcValue(values.imageIndex);
+                getImgValue = Math.floor(imgVal);
+                objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
+                break;
+        }
+    }
     // eventListener /////////////////////////////////////////////////
 
     // 스크롤할 때 마다 이벤트 발생
     window.addEventListener('scroll', ()=>{
-        // yOffset에 스크롤값 넣어줌
-        yOffset = window.scrollY;
-
-        // 현재 섹션값 가져오기
-        currentSection = getCurrentSection();
-
-        // CSS 변경 적용
-        setBodyID(currentSection);
-
-        // local-nav-sticky 일정 높이 이상 적용
-        setLocalnavMenu();
-
-         
-    })
-
-    // 페이지 로딩이 끝날 때 마다 이벤트 발생
-    window.addEventListener('load', ()=>{
-        // 레이아웃 잡아줌
-        setLayout();
-
         // yOffset에 스크롤값 넣어줌
         yOffset = window.scrollY;
 
@@ -194,6 +280,32 @@
 
         // local-nav-sticky 일정 높이 이상 적용
         setLocalnavMenu();
+
+        playAnimation();
+        
+    })
+
+    // 페이지 로딩이 끝날 때 마다 이벤트 발생
+    window.addEventListener('load', ()=>{
+        // 레이아웃 잡아줌
+        setLayout();
+
+        // yOffset에 스크롤값 넣어줌
+        yOffset = window.scrollY;
+
+        // 현재 섹션값 가져오기
+        currentSection = getCurrentSection();
+
+        // CSS 변경 적용
+        setBodyID(currentSection);
+
+        // 캔버스 가져옴
+        setCanvas();
+
+        // local-nav-sticky 일정 높이 이상 적용
+        setLocalnavMenu();
+
+        playAnimation();
 
     })
 
