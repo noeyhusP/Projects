@@ -19,6 +19,7 @@
             hMultiple : 5,
             objs : {
                 container : document.querySelector("#section-0"),
+                // picA : document.querySelector(".section0-canvas"),
                 canvas : document.querySelector("#main-canvas"),
                 ctx : document.querySelector("#main-canvas").getContext("2d"),
             },
@@ -26,6 +27,8 @@
                 imageCount : 229,
                 canvasImages : [],
                 imageIndex : [0, 228],
+                picA_fade_in : [0, 1, {start:0.02, end:0.11}],
+                picA_fade_out : [1, 0, {start:0.81, end:0.90}],
 
             }
         },
@@ -247,6 +250,8 @@
     // 애니메이션 가동 함수 선언
     const playAnimation = function()
     {
+        let opacity = 0;
+        let transValue = 0;
         let imgVal = 0;
         let scrollRate = sectionYoffset / sectionSet[currentSection].height;
 
@@ -256,9 +261,21 @@
         switch(currentSection)
         {
             case 0:
+                // objects.picA.style.opacity = 0;
                 imgVal = calcValue(values.imageIndex);
                 getImgValue = Math.floor(imgVal);
                 objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
+                // @@ picA
+                // if (scrollRate < 0.12) // picA의 애니메이션 범위 1
+                // {
+                //     opacity = calcValue(sectionSet[currentSection].vals.picA_fade_in);
+                //     objects.canvas.style.opacity = opacity;
+                // }
+                // else if ((scrollRate >= 0.81) && (scrollRate < 0.92))
+                // {
+                //     opacity = calcValue(values.picA_fade_out);
+                //     objects.canvas.style.opacity = opacity;
+                // }
                 break;
         }
     }
