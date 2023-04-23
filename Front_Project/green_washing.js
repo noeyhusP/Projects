@@ -27,8 +27,9 @@
                 imageCount : 229,
                 canvasImages : [],
                 imageIndex : [0, 228],
-                picA_fade_in : [0, 1, {start:0.02, end:0.11}],
+                picA_fade_in : [0, 1, {start:0.05, end:0.16}],
                 picA_fade_out : [1, 0, {start:0.81, end:0.90}],
+                picA_maintain : [1, 1]
 
             }
         },
@@ -261,25 +262,28 @@
         switch(currentSection)
         {
             case 0:
-                // objects.container.style.opacity = 0;
+                objects.container.style.opacity = 1;
                 imgVal = calcValue(values.imageIndex);
                 getImgValue = Math.floor(imgVal);
                 objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
                 // @@ picA
-                // if (scrollRate < 0.12) // picA의 애니메이션 범위 1
-                // {
-                //     opacity = calcValue(sectionSet[currentSection].vals.picA_fade_in);
-                //     objects.container.style.opacity = opacity;
-                // }
-                // else if ((scrollRate >= 0.81) && (scrollRate < 0.92))
-                // {
-                //     opacity = calcValue(values.picA_fade_out);
-                //     objects.container.style.opacity = opacity;
-                // }
-                // else
-                // {
-                //     objects.container.style.opacity = 1;
-                // }
+                if ((scrollRate >= 0.05) && (scrollRate < 0.16)) // picA의 애니메이션 범위 1
+                {
+                    opacity = calcValue(sectionSet[currentSection].vals.picA_fade_in);
+                    objects.canvas.style.opacity = opacity;
+                }
+                else if ((scrollRate >= 0.12) && (scrollRate < 0.81))
+                {
+                    opacity = calcValue(sectionSet[currentSection].vals.picA_maintain);
+                    objects.canvas.style.opacity = opacity;
+
+
+                }
+                else if ((scrollRate >= 0.81) && (scrollRate < 0.92))
+                {
+                    opacity = calcValue(values.picA_fade_out);
+                    objects.canvas.style.opacity = opacity;
+                }
                 break;
         }
     }
