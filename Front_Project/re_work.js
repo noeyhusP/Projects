@@ -33,7 +33,7 @@
             }
         },
         {
-            //section-2
+            //section-2 (definition)
             height : 0,
             hMultiple : 8,
             objs : {
@@ -53,10 +53,12 @@
                 imageCount : 229,
                 canvasImages : [],
                 imageIndex : [0, 228],
+                // scroll opacity 값
                 picA_fade_in : [0, 1, {start:0.1, end:0.07}],
                 picA_fade_out : [1, 0, {start:0.9, end:0.96}],
                 picA_maintain : [1, 1],
 
+                // text opacity 값
                 sentenceA_fade_in : [0, 1, {start:0.01, end:0.07}],
                 sentenceB_fade_in : [0, 1, {start:0.08, end:0.29}],
                 sentenceC_fade_in : [0, 1, {start:0.30, end:0.43}],
