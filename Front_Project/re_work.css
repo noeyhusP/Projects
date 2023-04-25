@@ -9,6 +9,7 @@ html {
 }
 
 body {
+    width: 100%;
     overflow-x: hidden; /* 수평스크롤 없애기 */
     letter-spacing: -0.05rem; /*0.05rem만큼(5%만큼) 글자폭 줄이기 */
 
@@ -143,14 +144,14 @@ footer {
     position: absolute;
 
     width: 100%;
-    /* max-width: 80%; */
     height: 100%;
 }
 
 #section-1 .def_imgtxt_top {
+    opacity: 0;
     position :absolute;
     top: 5%;
-    left: 3%;
+    left: 4%;
     font-size: 12rem;
     font-weight: bold;
     color: black;
@@ -165,44 +166,63 @@ footer {
 }
 
 .def_imgtxt_left {
+    opacity: 0;
     position :absolute;
     font-size: 12rem;
     font-weight: bold;
-    /* 첫 item과 마지막 item이 각각 마지막에 정렬되고
-    나머지는 고르게 정렬됨 */
+    
     color: black;
     position: relative;
-    top: 35%;
+    top: 34%;
 
-    height: 50%; /*부모의 높이의 100%*/
+    height: 50%; 
     margin-left: 20px;
 }
 
 .def_imgtxt_right {
+    opacity: 0;
     position: absolute;
     font-size: 12rem;
     font-weight: bold;
-    /* 첫 item과 마지막 item이 각각 마지막에 정렬되고
-    나머지는 고르게 정렬됨 */
+    
     color: black;
-    top: 35%;
+    top: 34%;
     left: 78%;
 
-    height: 100%; /*부모의 높이의 100%*/
+    height: 100%; 
     margin-right: 5px;
+}
+
+/* --------- 섹션에 들어오면 글자 나타나기 ----------- */
+#section-1:hover .def_imgtxt_top {
+    transition: linear 500ms;
+    opacity: 1;
+}
+
+#section-1:hover .def_imgtxt_left {
+    transition: linear 500ms 500ms;
+    opacity: 1;
+}
+
+#section-1:hover .def_imgtxt_right {
+    transition: linear 500ms 1000ms;
+    /* transition-delay: 1000ms; */
+    opacity: 1;
 }
 
 
 /* ====================스크롤섹션 1 ============================= */
 
-/* .scroll-section {
+.scroll-section {
     border: 1px solid green;
-} */
+}
 
 .sticky-element {
     display: none;
     position: fixed;
 }
+
+/* ----- section2 (definition sentence) ------ */
 
 #section-2 {
     position: relative;
@@ -213,8 +233,6 @@ footer {
     top: 0;
     z-index: -50;
 }
-
-/* ----- definition sentence ------ */
 
 .section2-sentence.a{
     opacity: 1;
@@ -313,6 +331,64 @@ mark {
     display: block;
 
 }
+
+/* ------ section3 ex1 ------------------------ */
+
+#section-3 {
+    background-image: url('./text_image/tumbler_임시.png');
+    background-size: cover;
+    filter: brightness(50%);
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -50;
+}
+
+.instance1_box {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+}
+
+.instance1_pic1 {
+    position :absolute;
+    top: 10%;
+    left: 30%;
+}
+
+/* #show-section3 .sticky-element {
+    display: block;
+
+} */
+
+/* ------ section4 ex2 ------------------------ */
+
+#section-4 {
+    background-image: url('./text_image/cosmetic_bg.jpeg');
+    background-size: cover;
+    filter: brightness(50%);
+}
+
+/* #show-section4 .sticky-element {
+    display: block;
+
+} */
+
+/* ----- section5 ex3 ------------------------- */
+
+#section-5 {
+    background-image: url('./text_image/ecobag_bg.jpeg');
+    background-size: cover;
+    filter: brightness(50%);
+}
+
+/* #show-section5 .sticky-element {
+    display: block;
+
+} */
+
+/* -------global nav blur처리 --------------------- */
 
 .global-nav-sticky > .global-nav {
     position : fixed;

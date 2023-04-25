@@ -26,7 +26,7 @@
         {
             //section-1
             height : 0,
-            hMultiple : 1,
+            hMultiple : 0.85,
             objs : 
             {
                 container : document.querySelector("#section-1")
@@ -35,7 +35,7 @@
         {
             //section-2 (definition)
             height : 0,
-            hMultiple : 8,
+            hMultiple : 6.5,
             objs : {
                 container : document.querySelector("#section-2"),
                 // picA : document.querySelector(".scroll-section"),
@@ -54,23 +54,23 @@
                 canvasImages : [],
                 imageIndex : [0, 228],
                 // scroll opacity 값
-                picA_fade_in : [0, 1, {start:0.1, end:0.07}],
-                picA_fade_out : [1, 0, {start:0.9, end:0.96}],
+                picA_fade_in : [0, 1, {start:0.01, end:0.07}],
+                picA_fade_out : [1, 0, {start:0.9, end:0.95}],
                 picA_maintain : [1, 1],
 
                 // text opacity 값
                 sentenceA_fade_in : [0, 1, {start:0.01, end:0.07}],
-                sentenceB_fade_in : [0, 1, {start:0.08, end:0.29}],
-                sentenceC_fade_in : [0, 1, {start:0.30, end:0.43}],
-                sentenceD_fade_in : [0, 1, {start:0.44, end:0.57}],
-                sentenceE_fade_in : [0, 1, {start:0.58, end:0.61}],
-                sentenceF_fade_in : [0, 1, {start:0.62, end:0.9}],
+                sentenceB_fade_in : [0, 1, {start:0.07, end:0.24}],
+                sentenceC_fade_in : [0, 1, {start:0.24, end:0.36}],
+                sentenceD_fade_in : [0, 1, {start:0.36, end:0.48}],
+                sentenceE_fade_in : [0, 1, {start:0.48, end:0.6}],
+                sentenceF_fade_in : [0, 1, {start:0.6, end:0.72}],
             }
         },
         {
             //section-3
             height : 0,
-            hMultiple : 0.585,
+            hMultiple : 1,
             objs : 
             {
                 container : document.querySelector("#section-3")
@@ -79,7 +79,7 @@
         {
             //section-4
             height : 0,
-            hMultiple : 0.585,
+            hMultiple : 1,
             objs : 
             {
                 container : document.querySelector("#section-4")
@@ -88,7 +88,7 @@
         {
             //section-5
             height : 0,
-            hMultiple : 0.585,
+            hMultiple : 1,
             objs : 
             {
                 container : document.querySelector("#section-5")
@@ -151,6 +151,10 @@
         else if ((yOffset > segment[3]) && (yOffset <= segment[4]))
         {
             section = 4;
+        }
+        else if ((yOffset > segment[4]) && (yOffset <= segment[5]))
+        {
+            section = 5;
         }
         else
         {
@@ -287,7 +291,7 @@
             case 1:
                 break;
             case 2:
-                objects.sentenceA.style.opacity = 1;
+                objects.sentenceA.style.opacity = 0;
                 objects.sentenceB.style.opacity = 0;
                 objects.sentenceC.style.opacity = 0;
                 objects.sentenceD.style.opacity = 0;
@@ -298,55 +302,65 @@
                 imgVal = calcValue(values.imageIndex);
                 getImgValue = Math.floor(imgVal);
                 objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
-                // @@ picA
-                // if ((scrollRate >= 0.02) && (scrollRate < 0.16)) // picA의 애니메이션 범위 1
-                // {
-                //     opacity = calcValue(sectionSet[currentSection].vals.picA_fade_in);
-                //     objects.canvas.style.opacity = opacity;
-                // }
-                if ((scrollRate > 0.02) && (scrollRate <0.07))
+                
+                if ((scrollRate > 0.01) && (scrollRate <0.07))
                 {
                     opacity = calcValue(values.picA_fade_in);
                     opacity = calcValue(values.sentenceA_fade_in);
                     objects.sentenceA.style.opacity = opacity;
                     objects.canvas.style.opacity = opacity;
                 }
-                else if ((scrollRate >= 0.07) && (scrollRate < 0.30))
+                else if ((scrollRate >= 0.07) && (scrollRate < 0.24))
                 {
                     opacity = calcValue(values.sentenceB_fade_in);
+                    objects.sentenceA.style.opacity = 1;
                     objects.sentenceB.style.opacity = opacity;
                 }
-                else if ((scrollRate >= 0.30) && (scrollRate < 0.43))
+                else if ((scrollRate >= 0.24) && (scrollRate < 0.36))
                 {
                     opacity = calcValue(values.sentenceC_fade_in);
+                    objects.sentenceA.style.opacity = 1;
                     objects.sentenceB.style.opacity = 1; 
                     objects.sentenceC.style.opacity = opacity; 
                 }
-                else if ((scrollRate >= 0.43) && (scrollRate < 0.57))
+                else if ((scrollRate >= 0.36) && (scrollRate < 0.48))
                 {
                     opacity = calcValue(values.sentenceD_fade_in);
+                    objects.sentenceA.style.opacity = 1;
                     objects.sentenceB.style.opacity = 1; 
                     objects.sentenceC.style.opacity = 1; 
                     objects.sentenceD.style.opacity = opacity; 
                 }
-                else if ((scrollRate >= 0.57) && (scrollRate < 0.61))
+                else if ((scrollRate >= 0.48) && (scrollRate < 0.6))
                 {
                     opacity = calcValue(values.sentenceE_fade_in);
+                    objects.sentenceA.style.opacity = 1;
                     objects.sentenceB.style.opacity = 1; 
                     objects.sentenceC.style.opacity = 1; 
                     objects.sentenceD.style.opacity = 1; 
                     objects.sentenceE.style.opacity = opacity; 
                 }
-                else if ((scrollRate >= 0.61) && (scrollRate < 0.9))
+                else if ((scrollRate >= 0.6) && (scrollRate < 0.72))
                 {
                     opacity = calcValue(values.sentenceF_fade_in);
+                    objects.sentenceA.style.opacity = 1;
                     objects.sentenceB.style.opacity = 1; 
                     objects.sentenceC.style.opacity = 1; 
                     objects.sentenceD.style.opacity = 1; 
                     objects.sentenceE.style.opacity = 1; 
                     objects.sentenceF.style.opacity = opacity; 
                 }
-                else if ((scrollRate >= 0.9) && (scrollRate < 0.96))
+                else if ((scrollRate >= 0.72) && (scrollRate < 0.9))
+                {
+                    opacity = calcValue(values.picA_maintain);
+                    objects.sentenceA.style.opacity = opacity;
+                    objects.sentenceB.style.opacity = opacity; 
+                    objects.sentenceC.style.opacity = opacity; 
+                    objects.sentenceD.style.opacity = opacity; 
+                    objects.sentenceE.style.opacity = opacity; 
+                    objects.sentenceF.style.opacity = opacity; 
+                }
+                else if ((scrollRate >= 0.9) && (scrollRate < 0.95))
                 {
                     opacity = calcValue(values.picA_fade_out);
                     objects.canvas.style.opacity = opacity;
@@ -378,6 +392,7 @@
 
         // CSS 변경 적용
         setBodyID(currentSection);
+        console.log(currentSection);
 
         // Global-nav-sticky 일정 높이 이상 적용
         setGlobalnavMenu();
