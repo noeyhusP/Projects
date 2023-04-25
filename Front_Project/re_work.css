@@ -10,7 +10,8 @@ html {
 
 body {
     width: 100%;
-    text-align: center;
+    /* text-align: center; */
+    
     overflow-x: hidden; /* 수평스크롤 없애기 */
     letter-spacing: -0.05rem; /*0.05rem만큼(5%만큼) 글자폭 줄이기 */
 
@@ -39,9 +40,18 @@ footer {
 
 /* ===============비디오 섹션(섹션 0) 설정============================== */
 
+#section_0 {
+    position: relative;
+    width: 100%;
+    
+}
+
 #section_0 .title_video {
+    position: absolute;
     left: 0;
     top: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1000;
 
 }
@@ -97,19 +107,21 @@ footer {
 
 /* ----section-0 title--------------------- */
 
-#section-0 {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
 .title_box {
     position: absolute;
     left: 23.75%;
     top: 0;
     width: 100%;
     max-width: 1000px;
-    height: 100%;
+    height: 80%;
+}
+
+.title_box .title_crayon {
+    position :absolute;
+    top: 310px;
+    left: 140px;
+    opacity: 0.6;
+    
 }
 
 /* 화면비율대비 크기 제대로 설정하기 */
@@ -232,7 +244,7 @@ footer {
 #section-2 .section2-canvas {
     left: 0;
     top: 0;
-    z-index: -50;
+    z-index: -70;
 }
 
 .section2-sentence.a{
@@ -322,7 +334,7 @@ footer {
 }
 
 mark {
-    background-color: rgb(136, 189, 152);
+    background-color: rgb(83, 147, 102);
     color: white;
     border-radius: 10px;
 
@@ -354,8 +366,14 @@ mark {
 
 .instance1_pic1 {
     position :absolute;
-    top: 10%;
-    left: 30%;
+    top: 0;
+    left: 45%;
+}
+
+.instance1_pic2 {
+    position :absolute;
+    top: 12%;
+    left: 7%;
 }
 
 /* #show-section3 .sticky-element {
@@ -369,7 +387,22 @@ mark {
     background-image: url('./text_image/cosmetic_bg.jpeg');
     background-size: cover;
     filter: brightness(50%);
+    z-index: -50;
 }
+
+.instance2_box {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+}
+
+.instance2_pic1 {
+    position :absolute;
+    top: 6%;
+    left: 2%;
+}
+
 
 /* #show-section4 .sticky-element {
     display: block;
@@ -388,6 +421,40 @@ mark {
     display: block;
 
 } */
+
+/* ----- section6 (definition2 sentence) ------ */
+
+/* #section-6 {
+    position: relative;
+}
+
+#section-6 .section6-canvas {
+    left: 0;
+    top: 0;
+    z-index: -50;
+}
+
+#show-section6 .sticky-element {
+    display: block;
+
+} */
+
+/* ----- section8 conclusion ---------------------- */
+
+#section-8 {
+    position: relative;
+}
+
+#section-8 .section8-canvas {
+    left: 0;
+    top: 0;
+    z-index: -100;
+}
+
+#show-section8 .sticky-element {
+    display: block;
+
+}
 
 /* -------global nav blur처리 --------------------- */
 

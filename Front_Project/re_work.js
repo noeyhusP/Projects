@@ -93,6 +93,53 @@
             {
                 container : document.querySelector("#section-5")
             }
+        },
+        {
+            //section-6
+            height : 0,
+            hMultiple : 1,
+            objs : 
+            {
+                container : document.querySelector("#section-6")
+            }
+        },
+        {
+            //section-7
+            height : 0,
+            hMultiple : 1,
+            objs : 
+            {
+                container : document.querySelector("#section-7")
+            }
+        },
+        {
+            //section-8
+            height : 0,
+            hMultiple : 5,
+            objs : 
+            {
+                container : document.querySelector("#section-8"),
+
+                canvas : document.querySelector("#third-canvas"),
+                ctx : document.querySelector("#third-canvas").getContext("2d"),
+            },
+            vals : {
+                imageCount : 295,
+                canvasImages : [],
+                imageIndex : [0, 294],
+                // scroll opacity 값
+                picA_fade_in : [0, 1, {start:0.01, end:0.07}],
+                picA_fade_out : [1, 0, {start:0.87, end:0.9}],
+                picA_maintain : [1, 1],
+
+                // text opacity 값
+                sentenceA_fade_in : [0, 1, {start:0.01, end:0.07}],
+                sentenceB_fade_in : [0, 1, {start:0.07, end:0.17}],
+                sentenceC_fade_in : [0, 1, {start:0.17, end:0.27}],
+                sentenceD_fade_in : [0, 1, {start:0.27, end:0.37}],
+                sentenceE_fade_in : [0, 1, {start:0.37, end:0.47}],
+                sentenceF_fade_in : [0, 1, {start:0.47, end:0.6}],
+            }
         }
     ]
 
@@ -129,7 +176,16 @@
             sectionSet[0].height + sectionSet[1].height + sectionSet[2].height
             + sectionSet[3].height,
             sectionSet[0].height + sectionSet[1].height + sectionSet[2].height
-            + sectionSet[3].height + sectionSet[4].height
+            + sectionSet[3].height + sectionSet[4].height,
+            sectionSet[0].height + sectionSet[1].height + sectionSet[2].height
+            + sectionSet[3].height + sectionSet[4].height + sectionSet[5].height,
+            sectionSet[0].height + sectionSet[1].height + sectionSet[2].height
+            + sectionSet[3].height + sectionSet[4].height + sectionSet[5].height + sectionSet[6].height,
+            sectionSet[0].height + sectionSet[1].height + sectionSet[2].height + sectionSet[3].height 
+            + sectionSet[4].height + sectionSet[5].height + sectionSet[6].height + sectionSet[7].height,
+            sectionSet[0].height + sectionSet[1].height + sectionSet[2].height + sectionSet[3].height 
+            + sectionSet[4].height + sectionSet[5].height + sectionSet[6].height + sectionSet[7].height
+            + sectionSet[8].height
         ];
 
         if (yOffset <= segment[0])
@@ -155,6 +211,18 @@
         else if ((yOffset > segment[4]) && (yOffset <= segment[5]))
         {
             section = 5;
+        }
+        else if ((yOffset > segment[5]) && (yOffset <= segment[6]))
+        {
+            section = 6;
+        }
+        else if ((yOffset > segment[6]) && (yOffset <= segment[7]))
+        {
+            section = 7;
+        }
+        else if ((yOffset > segment[7]) && (yOffset <= segment[8]))
+        {
+            section = 8;
         }
         else
         {
@@ -206,6 +274,48 @@
         {
             imgElement = new Image();
             imgElement.src = `./image_1/smokestack_${i}.png`;
+            canvasImages.push(imgElement);
+
+        }
+        imgElement.addEventListener("load",()=>
+        {
+            ctx.drawImage(canvasImages[0], 0, 0);
+
+        });
+    }
+
+    // const setCanvas2 = function()
+    // {
+    //     let imgElement;
+    //     const imgCount = sectionSet[6].vals.imageCount;
+    //     const canvasImages = sectionSet[6].vals.canvasImages;
+    //     const ctx = sectionSet[6].objs.ctx;
+
+    //     for (let i = 0; i < imgCount; i++)
+    //     {
+    //         imgElement = new Image();
+    //         imgElement.src = `./image_1/smokestack_${i}.png`;
+    //         canvasImages.push(imgElement);
+
+    //     }
+    //     imgElement.addEventListener("load",()=>
+    //     {
+    //         ctx.drawImage(canvasImages[0], 0, 0);
+
+    //     });
+    // }
+
+    const setCanvas3 = function()
+    {
+        let imgElement;
+        const imgCount = sectionSet[8].vals.imageCount;
+        const canvasImages = sectionSet[8].vals.canvasImages;
+        const ctx = sectionSet[8].objs.ctx;
+
+        for (let i = 0; i < imgCount; i++)
+        {
+            imgElement = new Image();
+            imgElement.src = `./image_3/nature${i}.png`;
             canvasImages.push(imgElement);
 
         }
@@ -277,8 +387,10 @@
     const playAnimation = function()
     {
         let opacity = 0;
+        let opacity3 = 0;
         let transValue = 0;
         let imgVal = 0;
+        let imgVal3 = 0;
         let scrollRate = sectionYoffset / sectionSet[currentSection].height;
 
         let values = sectionSet[currentSection].vals;
@@ -372,6 +484,31 @@
                     objects.sentenceF.style.opacity = opacity; 
                 }
                 break;
+            case 8 :
+                objects.container.style.opacity = 1;
+
+                imgVal3 = calcValue(values.imageIndex);
+                getImgValue3 = Math.floor(imgVal3);
+                objects.ctx.drawImage(values.canvasImages[getImgValue3], 0 ,0);
+
+                if ((scrollRate > 0.01) && (scrollRate <0.07))
+                {
+                    opacity3 = calcValue(values.picA_fade_in);
+                    // opacity = calcValue(values.sentenceA_fade_in);
+                    // objects.sentenceA.style.opacity = opacity;
+                    objects.canvas.style.opacity = opacity3;
+                }
+                else if ((scrollRate >= 0.07) && (scrollRate < 0.83))
+                {
+                    opacity3 = calcValue(values.picA_maintain);
+                    objects.canvas.style.opacity = opacity3;
+                }
+                else if ((scrollRate >= 0.83) && (scrollRate < 0.9))
+                {
+                    opacity3 = calcValue(values.picA_fade_out);
+                    objects.canvas.style.opacity = opacity3;
+                }
+                break;
             default:
                 break;
         }
@@ -389,7 +526,7 @@
 
         // sectionYoffset 구하기
         sectionYoffset = yOffset - getPrevSectionHeight();
-        console.log(sectionYoffset)
+        // console.log(sectionYoffset)
 
         // CSS 변경 적용
         setBodyID(currentSection);
@@ -416,6 +553,7 @@
 
         // 캔버스 가져오기
         setCanvas();
+        setCanvas3();
 
         // CSS 변경 적용
         setBodyID(currentSection);
