@@ -10,6 +10,7 @@ html {
 
 body {
     width: 100%;
+    text-align: center;
     overflow-x: hidden; /* 수평스크롤 없애기 */
     letter-spacing: -0.05rem; /*0.05rem만큼(5%만큼) 글자폭 줄이기 */
 

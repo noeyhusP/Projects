@@ -55,16 +55,16 @@
                 imageIndex : [0, 228],
                 // scroll opacity 값
                 picA_fade_in : [0, 1, {start:0.01, end:0.07}],
-                picA_fade_out : [1, 0, {start:0.9, end:0.95}],
+                picA_fade_out : [1, 0, {start:0.87, end:0.9}],
                 picA_maintain : [1, 1],
 
                 // text opacity 값
                 sentenceA_fade_in : [0, 1, {start:0.01, end:0.07}],
-                sentenceB_fade_in : [0, 1, {start:0.07, end:0.24}],
-                sentenceC_fade_in : [0, 1, {start:0.24, end:0.36}],
-                sentenceD_fade_in : [0, 1, {start:0.36, end:0.48}],
-                sentenceE_fade_in : [0, 1, {start:0.48, end:0.6}],
-                sentenceF_fade_in : [0, 1, {start:0.6, end:0.72}],
+                sentenceB_fade_in : [0, 1, {start:0.07, end:0.17}],
+                sentenceC_fade_in : [0, 1, {start:0.17, end:0.27}],
+                sentenceD_fade_in : [0, 1, {start:0.27, end:0.37}],
+                sentenceE_fade_in : [0, 1, {start:0.37, end:0.47}],
+                sentenceF_fade_in : [0, 1, {start:0.47, end:0.6}],
             }
         },
         {
@@ -310,20 +310,20 @@
                     objects.sentenceA.style.opacity = opacity;
                     objects.canvas.style.opacity = opacity;
                 }
-                else if ((scrollRate >= 0.07) && (scrollRate < 0.24))
+                else if ((scrollRate >= 0.07) && (scrollRate < 0.17))
                 {
                     opacity = calcValue(values.sentenceB_fade_in);
                     objects.sentenceA.style.opacity = 1;
                     objects.sentenceB.style.opacity = opacity;
                 }
-                else if ((scrollRate >= 0.24) && (scrollRate < 0.36))
+                else if ((scrollRate >= 0.17) && (scrollRate < 0.27))
                 {
                     opacity = calcValue(values.sentenceC_fade_in);
                     objects.sentenceA.style.opacity = 1;
                     objects.sentenceB.style.opacity = 1; 
                     objects.sentenceC.style.opacity = opacity; 
                 }
-                else if ((scrollRate >= 0.36) && (scrollRate < 0.48))
+                else if ((scrollRate >= 0.27) && (scrollRate < 0.37))
                 {
                     opacity = calcValue(values.sentenceD_fade_in);
                     objects.sentenceA.style.opacity = 1;
@@ -331,7 +331,7 @@
                     objects.sentenceC.style.opacity = 1; 
                     objects.sentenceD.style.opacity = opacity; 
                 }
-                else if ((scrollRate >= 0.48) && (scrollRate < 0.6))
+                else if ((scrollRate >= 0.37) && (scrollRate < 0.47))
                 {
                     opacity = calcValue(values.sentenceE_fade_in);
                     objects.sentenceA.style.opacity = 1;
@@ -340,7 +340,7 @@
                     objects.sentenceD.style.opacity = 1; 
                     objects.sentenceE.style.opacity = opacity; 
                 }
-                else if ((scrollRate >= 0.6) && (scrollRate < 0.72))
+                else if ((scrollRate >= 0.47) && (scrollRate < 0.6))
                 {
                     opacity = calcValue(values.sentenceF_fade_in);
                     objects.sentenceA.style.opacity = 1;
@@ -350,7 +350,7 @@
                     objects.sentenceE.style.opacity = 1; 
                     objects.sentenceF.style.opacity = opacity; 
                 }
-                else if ((scrollRate >= 0.72) && (scrollRate < 0.9))
+                else if ((scrollRate >= 0.6) && (scrollRate < 0.83))
                 {
                     opacity = calcValue(values.picA_maintain);
                     objects.sentenceA.style.opacity = opacity;
@@ -360,7 +360,7 @@
                     objects.sentenceE.style.opacity = opacity; 
                     objects.sentenceF.style.opacity = opacity; 
                 }
-                else if ((scrollRate >= 0.9) && (scrollRate < 0.95))
+                else if ((scrollRate >= 0.83) && (scrollRate < 0.9))
                 {
                     opacity = calcValue(values.picA_fade_out);
                     objects.canvas.style.opacity = opacity;
@@ -389,10 +389,11 @@
 
         // sectionYoffset 구하기
         sectionYoffset = yOffset - getPrevSectionHeight();
+        console.log(sectionYoffset)
 
         // CSS 변경 적용
         setBodyID(currentSection);
-        console.log(currentSection);
+        // console.log(currentSection);
 
         // Global-nav-sticky 일정 높이 이상 적용
         setGlobalnavMenu();
