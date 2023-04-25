@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // template = data type
+
+        // 예제
+        class Rectangle {
+            // 클래스에 활용하고 있는 데이터는 constructor내 데이터를 확인하면 됨
+            constructor(height, width) {
+                // 생성자 (특별"함수") > 역할 : 객체에 들어갈 데이터를 생성하고 초기화함
+                // 특징 : 이름이 무조건 "constructor" 
+                // & 얘도 object임(non-primitive타입이 아니면 다 오브젝트)
+                // 결국 객체 생성&초기화 하는 역할은 오브젝트의 특징 기능을 수행하는 것 
+                // => 값을 넣으려는데 해당하는 키가 없으면 만들어서 추가하는 것과 같은 특성
+                this.height = height;
+                this.width = width;
+                // 이 객체의 a라는 것을 표현하기 위해 this.를 붙임
+            }
+            getWidth(){
+                return this.width;
+            }
+
+            getHeight(){
+                return this.height;
+            }
+
+            getArea (){
+                return this.getWidth() * this.getHeight();
+            }
+            }
+
+            // new Rectangle() => Rectangle클래스를 객체화시켜라
+            //                 => Rectangle템플릿을 객체화시켜라
+            // 주의 : Rectangle이 오브젝트가 아님, 데이터타입임
+            const myRect1 = new Rectangle(10,20); // net Rectangle에 ()를 붙임으로 초기화
+            console.log("Width:",myRect1.getWidth());
+            console.log("Height:",myRect1.getHeight());
+            console.log("Area:",myRect1.getArea());
+
+            // 넓이, 폭 구하는 함수?
+
+            class Calc {
+                constructor(height,width)
+                {
+                    this.width = width;
+                    this.height = height;
+                }
+
+                getArea() {
+                    return this.width * this.height;
+                }
+
+                getWidth() {
+                    return this.width;
+                }
+
+                getHeight() {
+                    return this.height;
+                }
+
+                getCircum() {
+                    return (this.width * 2) + (this.height * 2);
+                    // (this.height + this.width) * 2
+                }
+            }
+
+            myRect2 = new Calc(10,20);
+            console.log("Rec2.Area:",myRect2.getArea());
+            console.log("Rec2.Width:",myRect2.getWidth());
+            console.log("Rec2.Circum:",myRect2.getCircum());
+
+            // 예제 1) 학생 성적 관리 SW (학생 정보는 이름, 학번, 전공)
+            // 학생은 전공에 따라 캠퍼스가 바뀔 수 있음
+            // 예를 들어 A전공 서울캠퍼스, B전공 성남캠퍼스
+            // 학생 클래스를 설계하고 코딩해보기
+
+            class manage_program {
+                // constructor로 만들면 자기 영역에 생김 (console로 열어서 확인하고 이해)
+                constructor(name, number, major, campus)
+                {
+                    // 생성자를 통해서 클래스에 소속되어있는 변수를 만듦
+                    // 이러한 변수를 Attribute(= field, = member variable)라고 함
+                    this.name = name;
+                    this.number = number;
+                    this.major = major;
+                    this.campus = campus;
+                    // this.n에 꼭 파라미터와 같은 이름이 들어와야하는 건 아니지만 
+                    // 똑같이 쓰는 게 알아보기도 좋기때문에 관례처럼 쓰이는 편
+                    // this.Acampus = "서울캠퍼스";
+                    // this.Bcampus = "성남캠퍼스";
+
+                    // this에 함수객체(익명함수) 넣기
+
+                    this.getName = function()
+                    {
+                        return this.name;
+                    }
+
+                    // 가능은 하나 웬만하면 이렇게 만들지 말 것 (일관성이 깨짐)
+                    // constructor에는 변수만 집어넣도록 하기
+                }
+
+                // method (member function) 
+                // method로 생성하면 prototype에 생김
+                // Attribute와 method는 자바에서 쓰기 시작한 용어
+                getCampus(major)
+                {
+                    if (this.major === "A")
+                    {
+                        // return "서울캠퍼스";
+                        return this.Acampus;
+
+                    }
+                    else if (this.major === "B")
+                    {
+                        // return "성남캠퍼스";
+                        return this.Bcampus;
+
+                    }
+                }
+                setCampus(campus)
+                {
+                    this.campus = campus;
+                }
+                setMajor(major, campus)
+                {
+                    this.major = major;
+                    this.campus = campus;
+                }
+            }
+
+            stu1 = new manage_program("PSH",2019120093,"A");
+            stu2 = new manage_program("PMS",2019120094,"B");
+            console.log("캠퍼스는", stu1.getCampus(), "입니다.");
+            console.log("캠퍼스는", stu2.getCampus(), "입니다.");
+
+            stu1.setMajor("B","성남캠퍼스");
+            console.log(stu1);
+
+            // 함수객체 호출
+            console.log(stu1.getName());
+
+            // constructor와 method로 생성했을 때 호출 차이는 없지만 메모리구조 차이가 되는 이유는
+            // 자바스크립트가 객체지향언어가 아닌데 객체지향인 자바에서 온 개념을 차용했기 때문 
+            // 때문에 일관성을 위해 method로 생성하는 것이 좋음
+
+            // 예제2) 원 클래스 만들기
+            // 원 클래스는 1. 원의 둘레 구하기 2. 원의 넓이를 구하기 
+
+            class circle_cal {
+                // Attribute의 선언 및 고정값 초기화 가능한 구간
+                // pi와 같은 고정값은 여기에 넣어놔도 가능함 (2022년도에 추가된 문법)
+                // 클래스에서는 let은 안 붙임 (오히려 에러남)
+                pi = 3.14;
+
+                // 그리고 여기서 변수 생성을 해줘도 됨
+                radius;
+
+                // Attribute 넣기
+                constructor(radius)
+                {
+                    // 생성자의 파라미터로 받은 값으로 초기화
+                    // 위에서 변수를 생성했다면 여기서 받은 값으로 초기화만 해도 됨
+                    this.radius = radius;
+                    // this.pi = 3.14;
+                }
+
+                // method 지정
+                get_Circum() {
+                    return (this.radius * 2) * this.pi;
+                }
+
+                get_Area() {
+                    return this.get_Circum() * 0.5 * this.radius;
+                    // return this.radius * this.radius * this.pi;
+                }
+
+                // pi값을 변경할 수 있도록 설정
+                setPi(pi)
+                {
+                    this.pi = pi;
+                }
+
+            }
+
+            circle1 = new circle_cal(3);
+            circle2 = new circle_cal(5);
+            console.log("원1의 둘레 :",circle1.get_Circum());
+            console.log("원1의 넓이 :",circle1.get_Area());
+            console.log("원2의 둘레 :",circle2.get_Circum());
+            console.log("원2의 넓이 :",circle2.get_Area());
+
+            // 예제3) "이젠돈까스" 라는 업체를 관리하는 SW
+            // 메뉴 = 돈까스:10000, 생선까스:9000, 돈까스세트:12000
+            // 매출은 날짜, 순번, 메뉴, 수량, 매출액 데이터를 저장할 것
+            // 매출을 출력하는 기능(날짜를 넣으면 매출 데이터를 출력)
+            // "이젠돈까스 매출현황, 날짜: 총 매출액" 
+
+            class ezendon {
+                pork = 10000;
+                fish = 9000;
+                set = 12000;
+                num;
+                date;
+                sales;
+
+                constructor(pork_num, fish_num, set_num, date)
+                {
+                    this.pork_num = pork_num;
+                    this.fish_num = fish_num;
+                    this.set_num = set_num;
+                    this.date = date;
+                }
+                setSales(pork_num, fish_num, set_num) {
+                    this.sales = (this.pork * this.pork_num) + (this.fish * this.fish_num)
+                    + (this.set * this.set_num)
+                    return this.sales;
+                }
+                setDate(date) {
+                    this.date = date;
+                }
+                getSales() {
+                    return console.log("이젠돈까스 매출현황:", this.date, ":", this.setSales());
+                }   
+
+            }
+
+            sales1 = new ezendon(2,3,5,20230425);
+            sales1.setSales(2,3,5);
+            console.log(sales1.getSales());
+
+            // 소프트웨어의 견고함은 변화의 가능성이 없어야 함
+            // 가변성이 있으면 불안정한 소프트웨어
+
+            
+            // 예제3)이젠돈까스 정답
+            // 값이 1개인 정보는 object로 묶는게 좋음 
+            // 메뉴 : 가격 오브젝트로 묶어놓기
+            const Menu = {
+                돈까스 : 10000,
+                생선까스 : 9000,
+                돈까스세트 : 12000
+            } 
+
+            // 매출데이터 클래스로 만들기
+
+            class Sale {
+                brand = "이젠돈까스";
+                date;
+                num;
+                menu;
+                count;
+                sales;
+                
+                constructor(date, num, menu, count)
+                {
+                    this.date = date;
+                    this.num = num;
+                    this.menu = menu;
+                    this.count = count;
+                    this.sales = Menu[menu] * count
+                }
+            };
+
+            const SalesData = [];
+
+            // let 으로 변수 만들고 여기에 클래스 돌리고
+            // 값을 배열에 푸시하고 또 새로 집어넣고 푸시하고 반복하면 매출배열이 만들어짐
+            let ss = new Sale("20230425", 1, "돈까스", 3);
+            SalesData.push(ss);
+
+            ss = new Sale("20230425", 1, "돈까스", 3);
+            SalesData.push(ss);
+            ss = new Sale("20230425", 2, "돈까스세트", 1);
+            SalesData.push(ss);
+            ss = new Sale("20230425", 3, "생선까스", 2);
+            SalesData.push(ss);
+
+            const getSales = function(date)
+            {
+                let total = 0;
+                for (const sale of SalesData)
+                {
+                    if (sale.date === date)
+                    {
+                        total = total + sale.sales;
+                    }
+                }
+                return total;
+            }
+
+            console.log(getSales("20230425"));
+
+            // console에서 확인
+
+            // 클래스와 오브젝트가 필요한 경우를 적절하게 판단해서 이용할 것
+            
+    </script>
+</body>
+</html>

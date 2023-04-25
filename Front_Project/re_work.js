@@ -26,7 +26,7 @@
         {
             //section-1
             height : 0,
-            hMultiple : 0.5,
+            hMultiple : 1,
             objs : 
             {
                 container : document.querySelector("#section-1")
