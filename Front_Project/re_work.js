@@ -265,20 +265,21 @@
     // 캔버스에 이미지 불러오는 함수 선언
     const setCanvas = function()
     {
+        let imgElement;
+
+        const imgCount = sectionSet[currentSection].vals.imageCount;
+        const canvasImages = sectionSet[currentSection].vals.canvasImages;
+        const ctx = sectionSet[currentSection].objs.ctx;
         switch(currentSection)
         {
             case 2 :
-                let imgElement;
-                const imgCount = sectionSet[currentSection].vals.imageCount;
-                const canvasImages = sectionSet[currentSection].vals.canvasImages;
-                const ctx = sectionSet[currentSection].objs.ctx;
                 for (let i = 0; i < imgCount; i++)
-                {
-                    imgElement = new Image();
-                    imgElement.src = `./image_1/smokestack_${i}.png`;
-                    canvasImages.push(imgElement);
+                    {
+                        imgElement = new Image();
+                        imgElement.src = `./image_1/smokestack_${i}.png`;
+                        canvasImages.push(imgElement);
 
-                }
+                    }
                 imgElement.addEventListener("load",()=>
                 {
                     ctx.drawImage(canvasImages[0], 0, 0);
@@ -286,20 +287,16 @@
                 });
                 break;
             case 8 :
-                let imgElement3;
-                const imgCount3 = sectionSet[currentSection].vals.imageCount;
-                const canvasImages3 = sectionSet[currentSection].vals.canvasImages;
-                const ctx3 = sectionSet[currentSection].objs.ctx;
-                for (let i = 0; i < imgCount3; i++)
-                {
-                    imgElement3 = new Image();
-                    imgElement3.src = `./image_3/nature${i}.png`;
-                    canvasImages3.push(imgElement3);
+                for (let i = 0; i < imgCount; i++)
+                    {
+                        imgElement = new Image();
+                        imgElement.src = `./image_3/nature${i}.png`;
+                        canvasImages.push(imgElement);
 
-                }
-                imgElement3.addEventListener("load",()=>
+                    }
+                imgElement.addEventListener("load",()=>
                 {
-                    ctx3.drawImage(canvasImages3[0], 0, 0);
+                    ctx.drawImage(canvasImages[0], 0, 0);
 
                 });
                 break;
@@ -369,10 +366,10 @@
     const playAnimation = function()
     {
         let opacity = 0;
-        let opacity3 = 0;
+        // let opacity3 = 0;
         let transValue = 0;
         let imgVal = 0;
-        let imgVal3 = 0;
+        // let imgVal3 = 0;
         let scrollRate = sectionYoffset / sectionSet[currentSection].height;
 
         let values = sectionSet[currentSection].vals;
@@ -469,26 +466,26 @@
             case 8 :
                 // objects.container.style.opacity = 1;
 
-                imgVal3 = calcValue(values.imageIndex);
-                getImgValue3 = Math.floor(imgVal3);
-                objects.ctx.drawImage(values.canvasImages[getImgValue3], 0 ,0);
+                imgVal = calcValue(values.imageIndex);
+                getImgValue = Math.floor(imgVal);
+                objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
 
                 if ((scrollRate > 0.01) && (scrollRate <0.07))
                 {
-                    opacity3 = calcValue(values.picA_fade_in);
+                    opacity = calcValue(values.picA_fade_in);
                     // opacity = calcValue(values.sentenceA_fade_in);
                     // objects.sentenceA.style.opacity = opacity;
-                    objects.canvas.style.opacity = opacity3;
+                    objects.canvas.style.opacity = opacity;
                 }
                 else if ((scrollRate >= 0.07) && (scrollRate < 0.83))
                 {
-                    opacity3 = calcValue(values.picA_maintain);
-                    objects.canvas.style.opacity = opacity3;
+                    opacity = calcValue(values.picA_maintain);
+                    objects.canvas.style.opacity = opacity;
                 }
                 else if ((scrollRate >= 0.83) && (scrollRate < 0.9))
                 {
-                    opacity3 = calcValue(values.picA_fade_out);
-                    objects.canvas.style.opacity = opacity3;
+                    opacity = calcValue(values.picA_fade_out);
+                    objects.canvas.style.opacity = opacity;
                 }
                 break;
             default:
@@ -509,9 +506,6 @@
         // sectionYoffset 구하기
         sectionYoffset = yOffset - getPrevSectionHeight();
         // console.log(sectionYoffset)
-
-        // 캔버스 가져오기
-        setCanvas();
 
         // CSS 변경 적용
         setBodyID(currentSection);
@@ -537,7 +531,7 @@
         currentSection = getCurrentSection();
 
         // 캔버스 가져오기
-        setCanvas(currentSection);
+        setCanvas();
 
         // CSS 변경 적용
         setBodyID(currentSection);

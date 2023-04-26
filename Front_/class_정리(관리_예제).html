@@ -47,14 +47,16 @@
 
             // 외부에서 브랜드네임을 접근하지 못하게 하는 코드
             // private Attribute(비공개 속성) 
-            // (외부에서는 접근이 막히고 내부의 메소드들만 접근할 수 있음)
+            // (외부에서는 접근이 막히고(read도 막힘) 내부의 메소드들만 접근할 수 있음)
             // !!! 변수명이 #brandName 인 것임 !!!
+            // 때문에 brandName 이라는 변수로 데이터를 추가하면 새로 생성돼서 들어갈 수 있음
+            // 주의!
             #brandName;
 
             // 초기화할 메뉴목록과 브랜드이름을 받아와서 선언해줌
             constructor(menu, brand) {
                 this.menu = menu;
-                this.brandname = brand;
+                this.#brandname = brand;
                 // sale 데이터가 차곡차곡 들어갈 빈 배열 생성
                 this.SalesData = [];
             }
@@ -123,6 +125,25 @@
                 } 
                 return total; 
             }
+
+            // 비공개속성처리로 리딩도 막힌 변수를 출력할 수 있게
+            // 별도로 메소드 만들어주기
+            // 정상적인 방법(어플리케이션에서 허가하는 방법)으로
+            // 변수값을 읽는 이러한 함수를 "getter(게터)"라고 함
+            getBrandName()
+            {
+                return this.#brandName;
+            }
+
+            // 정상적인 방법(어플리케이션에서 허가하는 방법)으로
+            // 변수값을 "설정"(쓰는) 함수를 "setter(세터)"라고 함
+            setBrandName(brand)
+            {
+                this.#brandName = brand;
+            }
+
+            // getter와 setter의 목적은 
+            // 데이터에 접근하는 @@@정상적인 방법@@@을 제공하는 데에 있음
         };
 
         // 관리프로그램(클래스)에 메뉴와 브랜드 등록 (초기화)
@@ -139,13 +160,23 @@
 
         // 콘솔로 확인
         console.log(ezenChicken.menu);
-        console.log(ezenChicken.brandname);
+        // console.log(ezenChicken.brandname);
 
         // ezenChicken.brandname = "폐업"
         // 클래스 외부에서 이것도 변경가능하기 때문에 불안정함
 
         // 1. brandName을 외부에서 접근하지 못하게 한다.
-        // 2. brandName에 접근하는 정상적인 방법을 제공합다.
+        // 2. brandName에 접근하는 정상적인 방법을 제공한다.
+
+        // ezenChicken.setBrandName("EZC");
+        // console.log(ezenChicken.getBrandName());
+
+        // getter setter가 생성됐다는 가정하에 가능한 문법
+        // 그치만 ezenChicken.setBrandName("EZC"); 이런 정석방식이 가장 좋음
+        ezenChicken.branName = "EZEN치킨";
+        console.log(ezenChicken.branName);
+
+
 
         
     </script>
