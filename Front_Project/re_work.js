@@ -263,47 +263,47 @@
     }
 
     // 캔버스에 이미지 불러오는 함수 선언
+
     const setCanvas = function()
     {
         let imgElement;
-
         const imgCount = sectionSet[currentSection].vals.imageCount;
         const canvasImages = sectionSet[currentSection].vals.canvasImages;
         const ctx = sectionSet[currentSection].objs.ctx;
-        switch(currentSection)
+        for (let i = 0; i < imgCount; i++)
         {
-            case 2 :
-                for (let i = 0; i < imgCount; i++)
-                    {
-                        imgElement = new Image();
-                        imgElement.src = `./image_1/smokestack_${i}.png`;
-                        canvasImages.push(imgElement);
+            imgElement = new Image();
+            imgElement.src = `./image_1/smokestack_${i}.png`;
+            canvasImages.push(imgElement);
 
-                    }
-                imgElement.addEventListener("load",()=>
-                {
-                    ctx.drawImage(canvasImages[0], 0, 0);
+        }
+        imgElement.addEventListener("load",()=>
+        {
+            ctx.drawImage(canvasImages[0], 0, 0);
 
-                });
-                break;
-            case 8 :
-                for (let i = 0; i < imgCount; i++)
-                    {
-                        imgElement = new Image();
-                        imgElement.src = `./image_3/nature${i}.png`;
-                        canvasImages.push(imgElement);
+        })
+    };
 
-                    }
-                imgElement.addEventListener("load",()=>
-                {
-                    ctx.drawImage(canvasImages[0], 0, 0);
+    const setCanvas3 = function()
+    {
+        let imgElement;
+        const imgCount = sectionSet[8].vals.imageCount;
+        const canvasImages = sectionSet[8].vals.canvasImages;
+        const ctx = sectionSet[8].objs.ctx;
 
-                });
-                break;
-            default :
-                break;
-        };
-    }
+        for (let i = 0; i < imgCount; i++)
+        {
+            imgElement = new Image();
+            imgElement.src = `./image_3/nature${i}.png`;
+            canvasImages.push(imgElement);
+
+        }
+        imgElement.addEventListener("load",()=>
+        {
+            ctx.drawImage(canvasImages[0], 0, 0);
+
+        });
+    };
 
     // opacity ratio 구하는 함수
     const calcValue = function(values)
@@ -532,6 +532,7 @@
 
         // 캔버스 가져오기
         setCanvas();
+        setCanvas3();
 
         // CSS 변경 적용
         setBodyID(currentSection);
