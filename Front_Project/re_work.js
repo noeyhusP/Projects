@@ -267,9 +267,9 @@
     const setCanvas = function()
     {
         let imgElement;
-        const imgCount = sectionSet[currentSection].vals.imageCount;
-        const canvasImages = sectionSet[currentSection].vals.canvasImages;
-        const ctx = sectionSet[currentSection].objs.ctx;
+        const imgCount = sectionSet[2].vals.imageCount;
+        const canvasImages = sectionSet[2].vals.canvasImages;
+        const ctx = sectionSet[2].objs.ctx;
         for (let i = 0; i < imgCount; i++)
         {
             imgElement = new Image();
@@ -277,32 +277,32 @@
             canvasImages.push(imgElement);
 
         }
-        imgElement.addEventListener("load",()=>
-        {
-            ctx.drawImage(canvasImages[0], 0, 0);
+        // imgElement.addEventListener("load",()=>
+        // {
+        //     ctx.drawImage(canvasImages[0], 0, 0);
 
-        })
+        // })
     };
 
     const setCanvas3 = function()
     {
         let imgElement;
         const imgCount = sectionSet[8].vals.imageCount;
-        const canvasImages = sectionSet[8].vals.canvasImages;
+        const canvasImages1 = sectionSet[8].vals.canvasImages;
         const ctx = sectionSet[8].objs.ctx;
 
         for (let i = 0; i < imgCount; i++)
         {
             imgElement = new Image();
             imgElement.src = `./image_3/nature${i}.png`;
-            canvasImages.push(imgElement);
+            canvasImages1.push(imgElement);
 
         }
-        imgElement.addEventListener("load",()=>
-        {
-            ctx.drawImage(canvasImages[0], 0, 0);
+        // imgElement.addEventListener("load",()=>
+        // {
+        //     ctx.drawImage(canvasImages1[0], 0, 0);
 
-        });
+        // });
     };
 
     // opacity ratio 구하는 함수
@@ -462,6 +462,16 @@
                     objects.sentenceE.style.opacity = opacity; 
                     objects.sentenceF.style.opacity = opacity; 
                 }
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
                 break;
             case 8 :
                 // objects.container.style.opacity = 1;
