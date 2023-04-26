@@ -29,14 +29,26 @@
             hMultiple : 0.85,
             objs : 
             {
-                container : document.querySelector("#section-1")
-            }
+                container : document.querySelector("#section-1"),
+
+                canvas : document.querySelector("#first-canvas"),
+                ctx : document.querySelector("#first-canvas").getContext("2d"),
+            },
+            vals : 
+            {
+                imageCount : 229,
+                canvasImages : [],
+                imageIndex : [0, 228],
+                // scroll opacity 값
+                sec1_fade_in : [0, 0.8, {start:0.7, end:1}]
+            },
         },
         {
             //section-2 (definition)
             height : 0,
             hMultiple : 6.5,
-            objs : {
+            objs : 
+            {
                 container : document.querySelector("#section-2"),
                 // picA : document.querySelector(".scroll-section"),
                 sentenceA : document.querySelector(".section2-sentence.a"),
@@ -49,12 +61,14 @@
                 canvas : document.querySelector("#first-canvas"),
                 ctx : document.querySelector("#first-canvas").getContext("2d"),
             },
-            vals : {
+            vals : 
+            {
                 imageCount : 229,
                 canvasImages : [],
                 imageIndex : [0, 228],
                 // scroll opacity 값
-                picA_fade_in : [0, 1, {start:0.01, end:0.07}],
+                // sec1_fade_in : [0, 0.8, {start:0.7, end:1}],
+                picA_fade_in : [0.8, 1, {start:0, end:0.07}],
                 picA_fade_out : [1, 0, {start:0.87, end:0.9}],
                 picA_maintain : [1, 1],
 
@@ -73,7 +87,17 @@
             hMultiple : 1,
             objs : 
             {
-                container : document.querySelector("#section-3")
+                container : document.querySelector("#section-3"),
+
+                sec3picA : document.querySelector(".instance1_pic1"),
+                sec3picB : document.querySelector(".instance1_pic2"),
+                sec3picC : document.querySelector("#instance1_pic3"), // 화살표
+                sec3picD : document.querySelector(".instance1_pic4"),
+                sec3picE : document.querySelector(".truth_1")
+            },
+            vals : {
+                page_fade_in : [0, 1, {start:0.98, end:1}],
+                page_maintain : [1, 1]
             }
         },
         {
@@ -82,7 +106,17 @@
             hMultiple : 1,
             objs : 
             {
-                container : document.querySelector("#section-4")
+                container : document.querySelector("#section-4"),
+
+                sec4picA : document.querySelector(".instance2_pic1"),
+                sec4picB : document.querySelector(".instance2_pic2"),
+                sec4picC : document.querySelector(".instance2_pic3"), // 화살표
+                sec4picD : document.querySelector(".instance2_pic4"),
+                sec4picE : document.querySelector(".truth_2")
+            },
+            vals : {
+                page_fade_in : [0, 1, {start:0.97, end:1}],
+                page_maintain : [1, 1]
             }
         },
         {
@@ -91,7 +125,16 @@
             hMultiple : 1,
             objs : 
             {
-                container : document.querySelector("#section-5")
+                container : document.querySelector("#section-5"),
+
+                sec5picA : document.querySelector(".instance3_pic1"),
+                sec5picB : document.querySelector(".instance3_pic2"), // 화살표
+                sec5picC : document.querySelector(".instance3_imgbox"), 
+                sec5picD: document.querySelector(".truth_3")
+            },
+            vals : {
+                page_fade_in : [0, 1, {start:0.97, end:1}],
+                page_maintain : [1, 1]
             }
         },
         {
@@ -109,8 +152,19 @@
             hMultiple : 1,
             objs : 
             {
-                container : document.querySelector("#section-7")
-            }
+                container : document.querySelector("#section-7"),
+
+                // canvas : document.querySelector("#third-canvas"),
+                // ctx : document.querySelector("#third-canvas").getContext("2d"),
+            },
+            // vals : {
+            //     imageCount : 295,
+            //     canvasImages : [],
+            //     imageIndex : [0, 294],
+            //     // scroll opacity 값
+            //     picA_fade_in : [0, 0.8, {start:0.7, end:1}],
+            //     picA_maintain : [1, 1],
+            // }
         },
         {
             //section-8
@@ -128,17 +182,18 @@
                 canvasImages : [],
                 imageIndex : [0, 294],
                 // scroll opacity 값
-                picA_fade_in : [0, 1, {start:0.01, end:0.07}],
+                sec7_fade_in : [0, 0.8, {start:0.7, end:1}],
+                picA_fade_in : [0.8, 1, {start:0.00, end:0.07}],
                 picA_fade_out : [1, 0, {start:0.87, end:0.9}],
                 picA_maintain : [1, 1],
 
                 // text opacity 값
-                sentenceA_fade_in : [0, 1, {start:0.01, end:0.07}],
-                sentenceB_fade_in : [0, 1, {start:0.07, end:0.17}],
-                sentenceC_fade_in : [0, 1, {start:0.17, end:0.27}],
-                sentenceD_fade_in : [0, 1, {start:0.27, end:0.37}],
-                sentenceE_fade_in : [0, 1, {start:0.37, end:0.47}],
-                sentenceF_fade_in : [0, 1, {start:0.47, end:0.6}],
+                // sentenceA_fade_in : [0, 1, {start:0.01, end:0.07}],
+                // sentenceB_fade_in : [0, 1, {start:0.07, end:0.17}],
+                // sentenceC_fade_in : [0, 1, {start:0.17, end:0.27}],
+                // sentenceD_fade_in : [0, 1, {start:0.27, end:0.37}],
+                // sentenceE_fade_in : [0, 1, {start:0.37, end:0.47}],
+                // sentenceF_fade_in : [0, 1, {start:0.47, end:0.6}],
             }
         }
     ]
@@ -284,7 +339,7 @@
         // })
     };
 
-    const setCanvas3 = function()
+    const setCanvas2 = function()
     {
         let imgElement;
         const imgCount = sectionSet[8].vals.imageCount;
@@ -380,6 +435,18 @@
             case 0:
                 break;
             case 1:
+                // values = sectionSet[2].vals;
+                // objects = sectionSet[2].objs;
+
+                // imgVal = calcValue(values.imageIndex);
+                // getImgValue = Math.floor(imgVal);
+                // objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
+
+                // if (scrollRate >= 0.7)
+                // {
+                //     opacity = calcValue(values.sec7_fade_in);
+                //     objects.canvas.style.opacity = opacity;
+                // }
                 break;
             case 2:
                 objects.sentenceA.style.opacity = 0;
@@ -389,12 +456,11 @@
                 objects.sentenceE.style.opacity = 0;
                 objects.sentenceF.style.opacity = 0;
 
-                // objects.canvas.style.opacity = 0;
                 imgVal = calcValue(values.imageIndex);
                 getImgValue = Math.floor(imgVal);
                 objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
                 
-                if ((scrollRate > 0.01) && (scrollRate <0.07))
+                if ((scrollRate > 0) && (scrollRate <0.07))
                 {
                     opacity = calcValue(values.picA_fade_in);
                     opacity = calcValue(values.sentenceA_fade_in);
@@ -462,29 +528,68 @@
                     objects.sentenceE.style.opacity = opacity; 
                     objects.sentenceF.style.opacity = opacity; 
                 }
+                if (scrollRate >= 0.98)
+                {   
+                    sectionSet[3].objs.sec3picA.style.opacity = 1;
+                    sectionSet[3].objs.sec3picB.style.opacity = 1;
+                    sectionSet[3].objs.sec3picC.style.opacity = 1;
+                    sectionSet[3].objs.sec3picD.style.opacity = 1;
+                    sectionSet[3].objs.sec3picE.style.opacity = 1;
+                }
                 break;
             case 3:
+                if (scrollRate >= 0.92)
+                {   
+                    sectionSet[4].objs.sec4picA.style.opacity = 1;
+                    sectionSet[4].objs.sec4picB.style.opacity = 1;
+                    sectionSet[4].objs.sec4picC.style.opacity = 1;
+                    sectionSet[4].objs.sec4picD.style.opacity = 1;
+                    sectionSet[4].objs.sec4picE.style.opacity = 1;
+                }
                 break;
             case 4:
+                if (scrollRate >= 0.92)
+                {   
+                    sectionSet[5].objs.sec5picA.style.opacity = 1;
+                    sectionSet[5].objs.sec5picB.style.opacity = 1;
+                    sectionSet[5].objs.sec5picC.style.opacity = 1;
+                    sectionSet[5].objs.sec5picD.style.opacity = 1;
+                }
                 break;
             case 5:
+                // if (scrollRate >= 0)
+                // {   
+                //     objects.sec5picA.style.opacity = 1;
+                //     objects.sec5picB.style.opacity = 1;
+                //     objects.sec5picC.style.opacity = 1;
+                //     objects.sec5picD.style.opacity = 1;
+                // }
                 break;
             case 6:
                 break;
             case 7:
-                break;
+                // objects = sectionSet[8].objs;
+                // values = sectionSet[8].objs;
+
+                // imgVal = calcValue(values.imageIndex);
+                // getImgValue = Math.floor(imgVal);
+                // objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
+
+                // if (scrollRate >= 0.7)
+                // {
+                //     opacity = calcValue(values.sec7_fade_in);
+                //     objects.canvas.style.opacity = opacity;
+                // }
+                // break;
             case 8 :
-                // objects.container.style.opacity = 1;
 
                 imgVal = calcValue(values.imageIndex);
                 getImgValue = Math.floor(imgVal);
                 objects.ctx.drawImage(values.canvasImages[getImgValue], 0 ,0);
 
-                if ((scrollRate > 0.01) && (scrollRate <0.07))
+                if ((scrollRate > 0) && (scrollRate <0.07))
                 {
                     opacity = calcValue(values.picA_fade_in);
-                    // opacity = calcValue(values.sentenceA_fade_in);
-                    // objects.sentenceA.style.opacity = opacity;
                     objects.canvas.style.opacity = opacity;
                 }
                 else if ((scrollRate >= 0.07) && (scrollRate < 0.83))
@@ -542,7 +647,7 @@
 
         // 캔버스 가져오기
         setCanvas();
-        setCanvas3();
+        setCanvas2();
 
         // CSS 변경 적용
         setBodyID(currentSection);
