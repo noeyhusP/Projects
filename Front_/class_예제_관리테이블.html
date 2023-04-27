@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>날짜</th>
+            <th>순번</th>
+            <th>품목</th>
+            <th>수량</th>
+            <th>단가</th>
+            <th>판매금액</th>
+        </tr>
+        <tr>
+            <td class="data1"></td>
+            <td class="data1"></td>
+            <td class="data1"></td>
+            <td class="data1"></td>
+            <td class="data1"></td>
+            <td class="data1"></td>
+        </tr>
+        <tr>
+            <td class="data2"></td>
+            <td class="data2"></td>
+            <td class="data2"></td>
+            <td class="data2"></td>
+            <td class="data2"></td>
+            <td class="data2"></td>
+        </tr>
+        <tr>
+            <td class="data3"></td>
+            <td class="data3"></td>
+            <td class="data3"></td>
+            <td class="data3"></td>
+            <td class="data3"></td>
+            <td class="data3"></td>
+        </tr>
+        <tr>
+            <td class="data4"></td>
+            <td class="data4"></td>
+            <td class="data4"></td>
+            <td class="data4"></td>
+            <td class="data4"></td>
+            <td class="data4"></td>
+        </tr>
+        <tr>
+            <td class="data5"></td>
+            <td class="data5"></td>
+            <td class="data5"></td>
+            <td class="data5"></td>
+            <td class="data5"></td>
+            <td class="data5"></td>
+        </tr>
+
+        <button class="addB">Data_append</button>
+    <script>
+        (function(){
+        class SalesManager{
+            // 외부에서 접근할 수 없도록 private으로 다 묶어줌
+            #brandName;
+            #menu;
+            #SalesData;
+
+            constructor(brandName) {
+                this.#menu = {};
+                this.#brandName = brandName;
+                this.#SalesData = [];
+
+            }
+
+            initManager()
+            {
+                return true;
+
+            }
+
+            // 정상적인 접근 방법 만들어주기
+            setMenu(name, price)
+            {
+                this.#menu[name] = price;   
+
+            }
+
+            // 메뉴를 보여주는 함수 (정상적 접근)
+            getMenu()
+            {
+                // menu객체와 똑같은 새로운 객체를 만들어줌
+                // deep copy (원본으로 직접 접근하는 것이 아니라)
+                // 똑같은 것을 만들어서 m에 참조값을 넣어줌
+                const m = {...this.menu};
+                // 그리고 이걸 리턴함
+                return m;
+                // return this.#menu;
+            }
+
+            getSalesData()
+            {
+                const data = {...this.#SalesData};
+                return data;
+            }
+
+            //
+            addSale(date, num, menu, count)
+            {
+                // 여기는 굳이 private 설정 안 해줘도 외부에서 존재 자체를 알 수 없음
+                // addSale 전용 클래스이기 때문
+                class Sale {
+                    date;
+                    num;
+                    menu;
+                    count;
+                    amount;
+                    
+                    // 필요한 데이터 받아올 constructor 생성
+                    constructor(date, num, menu, price, count)
+                    {
+                        this.date = date;
+                        this.menu = menu;
+                        this.num = num;
+                        this.count = count;
+                        this.amount = price * count;
+                    }
+                };
+
+                // 위에서 만들어진 Sale클래스를 새로운 오브젝트에 데이터 넣어줌
+                const SaleObj = new Sale(date, num, menu, this.#menu[menu], count);
+                // 만들어진 오브젝트의 데이터들을 앞서 만들어놓은 빈 배열 SalesData에 푸쉬
+                this.#SalesData.push(SaleObj);
+            }
+
+            getAmount(date)
+            {
+                let total = 0;
+                // 위에서 만들어진 SalesData 배열 속 데이터를 활용
+                for (const Sale of this.#SalesData)
+                {
+                    // console.log(sale)
+                    if (Sale.date === date)
+                    {
+                        total = total + Sale.amount;
+                    }
+                }
+                return total;
+            }
+
+            getSalesCount(date)
+            {
+                let total = 0;
+                // 위에서 만들어진 SalesData 배열 속 데이터를 활용
+                for (const Sale of this.#SalesData)
+                {
+                    if (Sale.date === date)
+                    {
+                        total = total + Sale.count;
+                    }
+                } 
+                return total; 
+            }
+            
+            getTotal ()
+            {
+                let total = 0;
+                // 위에서 만들어진 SalesData 배열 속 데이터를 활용
+                for (const Sale of this.#SalesData)
+                {
+                    total = total + Sale.amount;                  
+                } 
+                return total;  
+            }
+            // 정상적인 접근 방법 만들어주기
+            // getter
+            getBrandName()
+            {
+                return this.#brandName;
+            }
+
+            // setter
+            setBrandName(brand)
+            {
+                this.#brandName = brand;
+            }
+        }
+
+        const ezenChicken = new SalesManager("EZ-Chicken"); 
+        ezenChicken.initManager();
+
+        ezenChicken.setMenu("후라이드치킨", 12000);
+        ezenChicken.setMenu("양념치킨", 15000);
+        ezenChicken.setMenu("반반치킨", 18000);
+
+        ezenChicken.addSale("20230405", 1, "후라이드치킨", 1);
+        ezenChicken.addSale("20230405", 2, "양념치킨", 2);
+        ezenChicken.addSale("20230405", 3, "반반치킨", 3);
+
+        ezenChicken.addSale("20230406", 1, "후라이드치킨", 2);
+        ezenChicken.addSale("20230406", 2, "양념치킨", 1);
+
+        console.log(ezenChicken);
+        console.log(ezenChicken.getTotal());
+        console.log(ezenChicken.getSalesData());
+
+        // const dataSet = document.getElementsByTagName("td");
+        // const dataSet = document.createElement("td");
+
+        const dataObjs = [
+            document.querySelector(".data1"),
+            document.querySelector(".data2"),
+            document.querySelector(".data3"),
+            document.querySelector(".data4"),
+            document.querySelector(".data5")
+        ]
+
+        const orgData = ezenChicken.getSalesData();
+        console.log(orgData);
+
+        // const $data1 = document.querySelector(".data1")
+        // const $data2 = document.querySelector(".data2")
+        // const $data3 = document.querySelector(".data3")
+        // const $data4 = document.querySelector(".data4")
+        // const $data5 = document.querySelector(".data5")
+        const dataAdd = document.querySelector(".addB");
+
+        dataAdd.addEventListener("click", ()=> {
+
+            const orgData = ezenChicken.getSalesData();
+
+            let dataObjs = [
+                orgData[0],
+                orgData[1],
+                orgData[2],
+                orgData[3],
+                orgData[4]
+            ]
+
+            for (let i = 0; i < orgData.length; i++)
+            {
+                for (const key in dataObjs[i])
+                {
+                    for (const key in dataObjs[i][i])
+                {
+                    const newdataObjs = {};
+                    newdataObjs = dataObjs[key];
+                    $dataSet = document.createElement("td");
+                    $dataSet.textContent = value;
+                    $tr.appendChild($newdataObjs);
+
+                }
+            }
+                return newdataObjs;
+
+                // dataObjs[i][0].textContent = dataObjs[i].date;
+                // dataObjs[i][1].textContent = dataObjs[i].num;
+                // dataObjs[i][2].textContent = dataObjs[i].menu;
+                // dataObjs[i][3].textContent = dataObjs[i].count;
+                // dataObjs[i][4].textContent = dataObjs[i].amount;
+            }
+        
+            // let data1 = ezenChicken.getSalesData[0];
+            // let data2 = ezenChicken.getSalesData[1];
+            // let data3 = ezenChicken.getSalesData[2];
+            // let data4 = ezenChicken.getSalesData[3];
+            // let data5 = ezenChicken.getSalesData[4];
+            
+        })
+    })();
+
+
+    </script>
+</body>
+</html>

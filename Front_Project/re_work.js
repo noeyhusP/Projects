@@ -93,11 +93,11 @@
                 sec3picB : document.querySelector(".instance1_pic2"),
                 sec3picC : document.querySelector("#instance1_pic3"), // 화살표
                 sec3picD : document.querySelector(".instance1_pic4"),
-                sec3picE : document.querySelector(".truth_1")
+                sec3picE : document.querySelector(".truth_1"),
+                sec3text : document.querySelector(".instance1_textbg")
             },
             vals : {
-                page_fade_in : [0, 1, {start:0.98, end:1}],
-                page_maintain : [1, 1]
+                page_fade_in : [0, 1, {start:0.98, end:1}]
             }
         },
         {
@@ -112,11 +112,11 @@
                 sec4picB : document.querySelector(".instance2_pic2"),
                 sec4picC : document.querySelector(".instance2_pic3"), // 화살표
                 sec4picD : document.querySelector(".instance2_pic4"),
-                sec4picE : document.querySelector(".truth_2")
+                sec4picE : document.querySelector(".truth_2"),
+                sec4text : document.querySelector(".instance2_textbg")
             },
             vals : {
-                page_fade_in : [0, 1, {start:0.97, end:1}],
-                page_maintain : [1, 1]
+                page_fade_in : [0, 1, {start:0.97, end:1}]
             }
         },
         {
@@ -130,11 +130,11 @@
                 sec5picA : document.querySelector(".instance3_pic1"),
                 sec5picB : document.querySelector(".instance3_pic2"), // 화살표
                 sec5picC : document.querySelector(".instance3_imgbox"), 
-                sec5picD: document.querySelector(".truth_3")
+                sec5picD: document.querySelector(".truth_3"),
+                sec5text : document.querySelector(".instance3_textbg")
             },
             vals : {
-                page_fade_in : [0, 1, {start:0.97, end:1}],
-                page_maintain : [1, 1]
+                page_fade_in : [0, 1, {start:0.97, end:1}]
             }
         },
         {
@@ -538,6 +538,10 @@
                 }
                 break;
             case 3:
+                if (scrollRate >= 0)
+                {
+                    objects.sec3text.style.opacity = 0.8;
+                }
                 if (scrollRate >= 0.92)
                 {   
                     sectionSet[4].objs.sec4picA.style.opacity = 1;
@@ -548,6 +552,10 @@
                 }
                 break;
             case 4:
+                if (scrollRate >= 0)
+                {
+                    objects.sec4text.style.opacity = 0.8;
+                }
                 if (scrollRate >= 0.92)
                 {   
                     sectionSet[5].objs.sec5picA.style.opacity = 1;
@@ -557,13 +565,10 @@
                 }
                 break;
             case 5:
-                // if (scrollRate >= 0)
-                // {   
-                //     objects.sec5picA.style.opacity = 1;
-                //     objects.sec5picB.style.opacity = 1;
-                //     objects.sec5picC.style.opacity = 1;
-                //     objects.sec5picD.style.opacity = 1;
-                // }
+                if (scrollRate >= 0)
+                {
+                    objects.sec5text.style.opacity = 0.8;
+                }
                 break;
             case 6:
                 break;
