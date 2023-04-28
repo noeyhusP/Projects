@@ -662,12 +662,8 @@ mark {
     height: 70%;
     top: 20%;
     left: 5%;
-    /* font-size: 1rem;
-    font-weight: bold;
-    text-align: center; */
-    /* color: beige; */
     z-index: 50;
-    /* transition: linear 1000ms; */
+    transition: linear 500ms;
 }
 
 .esg_def_pic {
@@ -678,6 +674,7 @@ mark {
     top: 23%;
     left: 0;
     z-index: 60;
+    transition: linear 500ms;
 }
 
 .esg_def_explain {
@@ -691,6 +688,7 @@ mark {
     color: black;
     opacity: 1;
     z-index: 60;
+    transition: linear 500ms;
 }
 
 #show-section6 .sticky-element {
@@ -721,10 +719,10 @@ mark {
 }
 
 /* ---------sec7 전체 div ---------------------------------*/
+
 .sec7-main {
     opacity: 0.5;
     position :absolute;
-    /* background-color: rgb(237, 228, 228); */
     width: 90%;
     height: 85%;
     top: 7%;
@@ -733,68 +731,58 @@ mark {
     z-index: -50;
 }
 
-/* ----------------section7 logo hover-------------- */
-
-/* #logo_hover_siita {
+/* #siita_btn {
     position: absolute;
-    top: 2%;
-    left: 20%;
-    width: 190px;
-    height: 120px;
-    background-color: blue;
-    z-index: 120;
+    top: 3%;
+    left: 7.5%;
+    width: 210px;
+    height: 55px;
+    z-index: 100;
 } */
+
 /* ---------------- section7 logo_img div ---------------------------- */
 
 .logo_section {
-    position: absolute; 
+    position: absolute;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    left: 16%;
-    top: 0;
-    width: 1100px;
+    justify-content: space-between; 
+
+    left: 7.5%;
+    top: 3%;
+    width: 1450px;
     height: 180px;
     filter: brightness(110%);
     z-index: 50;
-    margin-left: 3rem;
 }
 
 /* ----------siita ------------- */
 .siita_logo {
-    width : 250px;
-    height : 150px;
-    z-index: 100;
+    /* position: absolute;  */
+    /* left: 6%;
+    top: 2%; */
+    /* width : 150px; */
+    height : 130px;
+    z-index: 50;
 }
 
 .innisfree_logo {
-    width : 380px;
-    height : 400px;
-    z-index: 100;
+    /* width :150px; */
+    height : 130px;
+    z-index: 50;
 }
 
 .freitag_logo {
-    width : 250px;
-    height : 150px;
-    z-index: 100;
+    /* width : 150px; */
+    height: 130px;
+
+    z-index: 50;
 }
 
 .patagonia_logo {
-    width : 250px;
-    height : 150px;
-    z-index: 100;
+    /* width : 150px; */
+    height : 130px;
+    z-index: 50;
 }
-
-/* .company_explain_box {
-    opacity: 0.5;
-    position :absolute;
-    background-color: rgb(237, 228, 228);
-    width: 90%;
-    height: 75%;
-    top: 20%;
-    left: 8%;
-    text-align: center;
-} */
 
 .company_explain_box_default {
     opacity: 1;
@@ -806,66 +794,7 @@ mark {
     z-index: 10;
 }
 
-.default_message {
-    position :absolute;
-    width: 10%;
-    height: 5%;
-    top: 14%;
-    left: 43.5%;
-    text-align: center;
-    font-size: 1.5rem;
-    color: white;
-}
-
-.sitta_box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-}
-
 .siita {
-    position : absolute;
-    text-align: center;
-    width: 90%;
-    height: 80%;
-    top: 72%;
-    left: 0;
-    font-size: 2rem;
-    color: black;
-    z-index: 50;
-}
-
-.siita_title {
-    position: absolute;
-    top: 1.5em;
-    left: 1em;
-    text-decoration: none; 
-    color: black;
-    font-size: 14rem;
-    z-index: 50;
-
-}
-
-.siita_img {
-    position : absolute;
-    display: flex;
-    top: 25%;
-    left: 40%;
-    width: 70%;
-    height: 90%;
-    align-content: space-around;
-    z-index: 50;
-}
-
-.siita_logo:hover .siita_box {
-    opacity: 1;
-    z-index: 100;
-}
-
-/* -------- innisfree ---------------------- */
-
-.innisfree {
     opacity: 1;
     position : absolute;
     /* display: flex; */
@@ -875,6 +804,88 @@ mark {
     height: 80%;
     top: 20%;
     left: 0;
+}
+
+.default_message {
+    position :absolute;
+    width: 10%;
+    height: 5%;
+    top: 14%;
+    left: 41.5%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.sitta_box {
+    opacity: 1;
+    position : absolute;
+    display: flex;
+    align-content: center;
+    background-color: beige;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.siita_title {
+    position: absolute;
+    top: 0.5em;
+    left: 1.6em;
+    text-decoration: none; 
+    color: black;
+    font-size: 10rem;
+    z-index: 50;
+}
+
+.siita_explain {
+    position : absolute;
+    text-align: left;
+    width: 90%;
+    height: 80%;
+    top: 45%;
+    left: 4%;
+    font-size: 2rem;
+    color: black;
+    z-index: 50;
+}
+
+.siita_img1 {
+    position : absolute;
+    top: 5%;
+    left: 18%;
+    width: 80%;
+    height: 60%;
+    z-index: 50;
+}
+
+.siita_img2 {
+    position : absolute;
+    top: 35%;
+    left: 45%;
+    width: 80%;
+    height: 70%;
+    z-index: 50;
+}
+
+/* .siita_logo:hover .siita {
+    opacity: 1;
+    z-index: 100;
+} */
+
+/* -------- innisfree ---------------------- */
+
+.innisfree {
+    opacity: 0;
+    position : absolute;
+    /* display: flex; */
+    align-content: center;
+    background-color: beige;
+    width: 90%;
+    height: 80%;
+    top: 20%;
+    left: 5%;
 }
 
 .innisfree_box {
@@ -915,8 +926,8 @@ mark {
     opacity: 1;
     position : absolute;
     width: 500px;
-    height: 650px;
-    top: 8%;
+    height: 600px;
+    top: 7%;
     right: 5%;
     z-index: 51;
 }
@@ -924,7 +935,7 @@ mark {
 /* ------- patagonia ----------- */
 
 .patagonia {
-    opacity: 1;
+    opacity: 0;
     position : absolute;
     /* display: flex; */
     align-content: center;
@@ -932,11 +943,58 @@ mark {
     width: 90%;
     height: 80%;
     top: 20%;
-    left: 0; 
+    left: 5%; 
 }
 
-.preitag {
+.patagonia_box {
     opacity: 1;
+    position : absolute;
+    display: flex;
+    align-content: center;
+    background-color: beige;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+.patagonia_title {
+    position: absolute;
+    top: 0.4em;
+    left: 1em;
+    text-decoration: none; 
+    color: black;
+    font-size: 8rem;
+    z-index: 50;
+}
+
+.patagonia_explain {
+    position : absolute;
+    text-align: left;
+    width: 90%;
+    height: 80%;
+    top: 38%;
+    left: 5%;
+    font-size: 2rem;
+    color: black;
+    z-index: 50;
+}
+
+.patagonia_img {
+    opacity: 1;
+    position : absolute;
+    width: 500px;
+    height: 600px;
+    top: 6%;
+    right: 5%;
+    z-index: 51;
+}
+
+/* ---------------- freitag ------------------ */
+
+.freitag {
+    opacity: 0;
     position : absolute;
     /* display: flex; */
     align-content: center;
@@ -944,7 +1002,51 @@ mark {
     width: 90%;
     height: 80%;
     top: 20%;
-    left: 0; 
+    left: 5%; 
+}
+
+.freitag_box {
+    opacity: 1;
+    position : absolute;
+    display: flex;
+    align-content: center;
+    background-color: beige;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.freitag_title {
+    position: absolute;
+    top: 0.4em;
+    left: 1em;
+    text-decoration: none; 
+    color: black;
+    font-size: 8rem;
+    z-index: 50;
+}
+
+.freitag_explain {
+    position : absolute;
+    text-align: left;
+    width: 90%;
+    height: 80%;
+    top: 40%;
+    left: 6%;
+    font-size: 2rem;
+    color: black;
+    z-index: 50;
+}
+
+.freitag_img {
+    opacity: 1;
+    position : absolute;
+    width: 500px;
+    height: 600px;
+    top: 6%;
+    right: 5%;
+    z-index: 51;
 }
 
 /* ----- section8 conclusion ---------------------- */

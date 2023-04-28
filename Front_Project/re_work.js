@@ -145,7 +145,8 @@
             hMultiple : 1,
             objs : 
             {
-                container : document.querySelector("#section-6")
+                container : document.querySelector("#section-6"),
+                sec6def : document.querySelector(".section6-definition2")
             }
         },
         {
@@ -172,7 +173,7 @@
         {
             //section-8
             height : 0,
-            hMultiple : 12,
+            hMultiple : 15,
             objs : 
             {
                 container : document.querySelector("#section-8"),
@@ -520,6 +521,9 @@
         sectionSet[5].objs.sec5picD.style.opacity = 0;
         sectionSet[5].objs.sec5text.style.opacity = 0;
 
+        // section[6] 애니메이션 디폴트 0
+        sectionSet[6].objs.sec6def.style.opacity = 0;
+
         // section2 sentences 디폴트 0
         sectionSet[2].objs.sentenceA.style.opacity = 0;
         sectionSet[2].objs.sentenceB.style.opacity = 0;
@@ -680,8 +684,16 @@
                 {
                     objects.sec5text.style.opacity = 0.8;
                 }
+                if (scrollRate >= 0.92)
+                {
+                    sectionSet[6].objs.sec6def.style.opacity = 0.65;
+                }
                 break;
             case 6:
+                if ((scrollRate >= 0) && (scrollRate < 0.98))
+                {
+                    sectionSet[6].objs.sec6def.style.opacity = 0.65;
+                }
                 break;
             case 7:
                 // objects = sectionSet[8].objs;
@@ -738,7 +750,7 @@
                     objects.sentenceC.style.opacity = opacity;
                     objects.sentenceC.style.transform = `translateY(${transValue}%)`;
                 }
-                else if ((scrollRate >= 0.27) && (scrollRate <= 0.11))
+                else if ((scrollRate >= 0.27) && (scrollRate <= 0.311))
                 {
                     opacity = calcValue(values.sentenceC_fade_out);
                     transValue = calcValue(values.sentenceC_translate_out);
@@ -822,7 +834,7 @@
                     objects.sentenceI.style.opacity = opacity;
                     objects.sentenceI.style.transform = `translateY(${transValue}%)`;
                 }
-                else if ((scrollRate >= 0.88) && (scrollRate <= 0.93))
+                else if ((scrollRate >= 0.87) && (scrollRate <= 0.93))
                 {
                     opacity = calcValue(values.sentenceJ_fade_in);
                     transValue = calcValue(values.sentenceJ_translate_in);
@@ -843,26 +855,34 @@
     }
 
     // 클릭 이벤트 엘리먼트 가져오기
-    const $siita = document.querySelector(".siita_logo");
-    const $innisfree = document.querySelector(".innisfree_logo");
-    const $freitag = document.querySelector(".freitag_logo");
-    const $patagonia = document.querySelector(".patagonia_logo");
+    // const $siita = document.querySelector("#siita_btn");
+    // const $innisfree = document.querySelector(".innisfree_logo");
+    // const $freitag = document.querySelector(".freitag_logo");
+    // const $patagonia = document.querySelector(".patagonia_logo");
+
+    // const $siita_on = document.querySelector(".sitta");
 
     // 각각 함수 만들어주기
 
-    const siita_explain = function()
-    {
-        const $siita_on = document.querySelector(".sitta_box");
-        $siita_on.style.display = block;
-    }
+    // const siita_explain = function()
+    // {
+    //     const $siita_on = document.querySelector(".sitta");
+    //     $siita_on.style.opacity = 1;
+    // }
+
+    // const innisfree_explain = function()
+    // {
+    //     const $innisfree = document.querySelector(".")
+    // }
 
     // =============== eventListener =====================================
 
     // section7 클릭 이벤트
 
-    $siita.addEventListener('click', ()=> {
-        siita_explain();
-    })
+    // $siita.addEventListener("click", ()=> {
+    //     const $siita_on = document.querySelector(".sitta");
+    //     $siita_on.style.opacity = 1;
+    // })
 
     // 스크롤할 때 마다 이벤트 발생
     window.addEventListener('scroll', ()=>{
